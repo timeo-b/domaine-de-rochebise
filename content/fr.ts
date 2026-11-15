@@ -92,6 +92,8 @@ export const FR = {
       vins: "Découvrir les vins",
       visite: "Réserver une dégustation",
       suite: "Commencer la montée",
+      murs: ["Sept hectares,", "tenus par des murs", "de pierre sèche."],
+      sommet: "Mètres d'altitude au dernier rang. On y monte à pied, comme chaque matin.",
       alt: "Vignes en terrasses sur un coteau abrupt, dans la lumière du soir.",
     },
 

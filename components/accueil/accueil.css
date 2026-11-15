@@ -14,7 +14,7 @@
 
 /* ── Ouverture ───────────────────────────────────────────────────── */
 
-.hero {
+.hero__scene {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -32,7 +32,7 @@
   z-index: -2;
 }
 
-.hero::after {
+.hero__scene::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -92,7 +92,7 @@
 }
 
 @media (max-width: 899.98px) {
-  .hero::after {
+  .hero__scene::after {
     background: linear-gradient(
       180deg,
       rgba(26, 16, 22, 0.84) 0%,
@@ -104,12 +104,92 @@
 }
 
 @media (min-width: 900px) {
-  .hero__suite {
+  .hero__pied {
     position: absolute;
     right: var(--marge);
     bottom: clamp(2rem, 5vw, 3.5rem);
     margin-top: 0;
   }
+}
+
+/* Les temps suivants de l'ouverture. À plat, ils se lisent à la suite,
+   sous le titre. Avec les animations, la scène reste en place pendant
+   que l'on défile : l'image avance, et les textes se relaient. */
+.hero__voile {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--nuit);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero__temps {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  max-width: 46rem;
+}
+
+.hero__phrase {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: var(--t-phrase);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.hero__chiffre {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(5rem, 2rem + 16vw, 15rem);
+  line-height: 0.9;
+  color: var(--laiton-clair);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.hero__chiffre small {
+  font-size: 0.32em;
+  margin-left: 0.15em;
+}
+
+.hero__legende {
+  margin-top: 1.25rem;
+  max-width: 30rem;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.4375rem);
+  line-height: 1.6;
+}
+
+.motion .hero {
+  height: 380vh;
+  height: 380svh;
+}
+
+.motion .hero__scene {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+}
+
+.motion .hero__image {
+  will-change: transform;
+}
+
+.motion .hero__temps {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  max-width: none;
+  padding: calc(var(--entete) + 1rem) var(--marge) calc(var(--bandeau) + 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.motion .hero__temps--altitude {
+  align-items: center;
+  text-align: center;
 }
 
 /* L'ouverture est animée en CSS : elle part au premier affichage, sans

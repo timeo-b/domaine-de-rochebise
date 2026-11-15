@@ -53,11 +53,13 @@ export function Accueil({ langue, t }: Props) {
       <PrechargePhoto nom="hero" />
 
       {/* ── Le fleuve : ouverture ─────────────────────────────────── */}
-      <section className="hero" aria-labelledby="hero-titre">
-        <div className="hero__image">
+      <section className="hero" aria-labelledby="hero-titre" data-montee>
+       <div className="hero__scene">
+        <div className="hero__image" data-montee-image>
           <Photo nom="hero" alt={t.hero.alt} sizes="100vw" prioritaire />
         </div>
-        <div className="hero__contenu">
+        <div className="hero__voile" data-montee-voile aria-hidden="true" />
+        <div className="hero__contenu" data-montee-debut>
           <Lignes balise="h1" id="hero-titre" className="hero__titre" lignes={t.hero.titre} />
           <p className="hero__chapeau">{t.hero.chapeau}</p>
           <div className="actions hero__actions">
@@ -69,9 +71,31 @@ export function Accueil({ langue, t }: Props) {
             </Link>
           </div>
         </div>
-        <a className="hero__suite" href="#lieu">
-          {t.hero.suite}
-        </a>
+        <div className="hero__pied" data-montee-debut>
+          <a className="hero__suite" href="#lieu">
+            {t.hero.suite}
+          </a>
+        </div>
+        <div className="hero__temps" data-montee-temps>
+          <p className="hero__phrase">
+            {t.hero.murs.map((ligne) => (
+              <span key={ligne} className="ligne">
+                {ligne}{" "}
+              </span>
+            ))}
+          </p>
+        </div>
+        <div className="hero__temps hero__temps--altitude" data-montee-temps>
+          <p className="hero__chiffre">
+            <span className="sr-only">{SITE.altitude.haut}</span>
+            <span aria-hidden="true" data-montee-valeur>
+              {SITE.altitude.haut}
+            </span>
+            <small>{t.altitude.unite}</small>
+          </p>
+          <p className="hero__legende">{t.hero.sommet}</p>
+        </div>
+       </div>
       </section>
 
       {/* ── Le lieu ───────────────────────────────────────────────── */}

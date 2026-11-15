@@ -97,10 +97,45 @@ function installerRevelations() {
 
 // ── 2. Effets attachés au défilement (grand écran) ──────────────────
 
-function installerDefilement(gsap: Gsap, ScrollTrigger: Declencheur) {
+function installerDefilement(gsap: Gsap, ScrollTrigger: Declencheur, large: boolean) {
   const remises: (() => void)[] = [];
 
   const contexte = gsap.context(() => {
+    // L'ouverture : la scène reste en place, l'image avance sur le coteau
+    // et les textes se relaient au fil du défilement. Sur tous les écrans.
+    const montee = document.querySelector<HTMLElement>("[data-montee]");
+    if (montee) {
+      const image = montee.querySelector<HTMLElement>("[data-montee-image]");
+      const voile = montee.querySelector<HTMLElement>("[data-montee-voile]");
+      const debut = Array.from(montee.querySelectorAll<HTMLElement>("[data-montee-debut]"));
+      const [murs, sommet] = Array.from(montee.querySelectorAll<HTMLElement>("[data-montee-temps]"));
+      const valeur = montee.querySelector<HTMLElement>("[data-montee-valeur]");
+      const etat = { v: SITE.altitude.bas as number };
+      const fil = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: { trigger: montee, start: "top top", end: "bottom bottom", scrub: 0.5 },
+      });
+      if (image) fil.fromTo(image, { scale: 1, yPercent: 0 }, { scale: 1.5, yPercent: -7, duration: 1 }, 0);
+      if (voile) fil.to(voile, { opacity: 0.22, duration: 0.5 }, 0.12);
+      fil.to(debut, { opacity: 0, y: -70, duration: 0.16 }, 0.04);
+      if (murs) {
+        fil.fromTo(murs, { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.14 }, 0.26);
+        fil.to(murs, { opacity: 0, y: -70, duration: 0.12 }, 0.5);
+      }
+      if (sommet) fil.fromTo(sommet, { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.14 }, 0.66);
+      if (valeur) {
+        fil.to(etat, { v: SITE.altitude.haut, duration: 0.24, onUpdate: () => { valeur.textContent = String(Math.round(etat.v)); } }, 0.66);
+        remises.push(() => { valeur.textContent = String(SITE.altitude.haut); });
+      }
+      // Au clavier, un lien du premier écran peut recevoir le focus alors
+      // qu'il s'est effacé : on revient en haut pour le montrer.
+      const remonter = () => { if (window.scrollY > 40) window.scrollTo({ top: 0 }); };
+      debut.forEach((d) => d.addEventListener("focusin", remonter));
+      remises.push(() => debut.forEach((d) => d.removeEventListener("focusin", remonter)));
+    }
+
+    if (!large) return;
+
     // Parallaxe douce des grandes images.
     gsap.utils.toArray<HTMLElement>("[data-parallaxe]").forEach((el) => {
       const force = Number(el.dataset.parallaxe) || 6;
@@ -207,13 +242,11 @@ export function Mouvement() {
       const moi = ++jeton;
       if (!html.classList.contains("motion")) return;
       defaire.push(installerRevelations());
-      // Téléphone, tablette tenue en hauteur : rien d'autre à charger.
-      if (!grand.matches) return;
       try {
         const [{ gsap }, { ScrollTrigger }] = await Promise.all([import("gsap"), import("gsap/ScrollTrigger")]);
         if (moi !== jeton) return;
         gsap.registerPlugin(ScrollTrigger);
-        defaire.push(installerDefilement(gsap, ScrollTrigger));
+        defaire.push(installerDefilement(gsap, ScrollTrigger, grand.matches));
       } catch {
         // Bibliothèque indisponible : les scènes épinglées n'auraient plus
         // personne pour les conduire. On repasse en version sans animation,
