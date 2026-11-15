@@ -134,6 +134,36 @@ function installerDefilement(gsap: Gsap, ScrollTrigger: Declencheur, large: bool
       remises.push(() => debut.forEach((d) => d.removeEventListener("focusin", remonter)));
     }
 
+    // La mise en bouteille : le verre se dessine, le vin monte, le bouchon
+    // descend, l'étiquette s'enroule, la bouteille tourne.
+    const mise = document.querySelector<HTMLElement>("[data-mise]");
+    if (mise) {
+      const q = (s: string) => mise.querySelector<SVGElement>(s);
+      const etapes = Array.from(mise.querySelectorAll<HTMLElement>("[data-mise-etape]"));
+      const fil = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: { trigger: mise, start: "top top", end: "bottom bottom", scrub: 0.6 },
+      });
+      // 0 → 1 : le verre.
+      fil.fromTo(q("[data-mise-bouteille]"), { y: -90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 0);
+      fil.fromTo(q("[data-mise-trait]"), { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9 }, 0);
+      // 1 → 2 : le vin.
+      fil.fromTo(q("[data-mise-vin]"), { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.9 }, 1);
+      // 2 → 3 : le bouchon, puis la capsule.
+      fil.fromTo(q("[data-mise-bouchon]"), { y: -150 }, { y: 0, duration: 0.5, ease: "power2.out" }, 2);
+      fil.fromTo(q("[data-mise-capsule]"), { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.4 }, 2.55);
+      // 3 → 4 : l'étiquette s'enroule.
+      fil.fromTo(q("[data-mise-masque]"), { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.9 }, 3);
+      // 4 → 5 : la bouteille tourne, l'étiquette glisse vers son dos.
+      fil.fromTo(q("[data-mise-bande]"), { x: 0 }, { x: -120, duration: 0.9, ease: "power1.inOut" }, 4.05);
+      fil.fromTo(q("[data-mise-reflet]"), { x: 0 }, { x: 84, duration: 0.9, ease: "power1.inOut" }, 4.05);
+      fil.set({}, {}, 5);
+      etapes.forEach((etape, i) => {
+        if (i > 0) fil.fromTo(etape, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.2 }, i);
+        if (i < etapes.length - 1) fil.to(etape, { opacity: 0, y: -40, duration: 0.18 }, i + 0.8);
+      });
+    }
+
     if (!large) return;
 
     // Parallaxe douce des grandes images.

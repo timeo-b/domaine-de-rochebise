@@ -680,3 +680,128 @@
     color: var(--pierre);
   }
 }
+
+/* ── La mise en bouteille ────────────────────────────────────────── */
+
+.mise__scene {
+  display: grid;
+  gap: 2.5rem;
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 8rem) var(--marge);
+}
+
+.mise__dessin {
+  display: flex;
+  justify-content: center;
+}
+
+.mise__dessin svg {
+  width: auto;
+  height: min(76vh, 46rem);
+  overflow: visible;
+}
+
+.mise__nom {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-size: 16px;
+  fill: #1a1016;
+}
+
+.mise__petit {
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  fill: #4a3a40;
+}
+
+.mise__domaine {
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  fill: #1a1016;
+}
+
+.mise__etapes {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.mise__titre {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: var(--t-phrase);
+  line-height: 1.05;
+}
+
+.mise__texte {
+  margin-top: 1rem;
+  max-width: 30rem;
+}
+
+.mise__lien {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .mise__scene {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    align-items: center;
+    gap: clamp(3rem, 6vw, 7rem);
+  }
+
+  .mise__dessin {
+    order: 2;
+  }
+}
+
+/* Avec les animations : la scène reste en place, les textes se relaient. */
+.motion .mise {
+  height: 520vh;
+  height: 520svh;
+}
+
+.motion .mise__scene {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  padding-top: calc(var(--entete) + 1rem);
+  padding-bottom: calc(var(--bandeau) + 1rem);
+  align-content: center;
+  overflow: hidden;
+}
+
+.motion .mise__etapes {
+  position: relative;
+  display: block;
+  min-height: 15rem;
+}
+
+.motion .mise__etape {
+  position: absolute;
+  inset: 0 0 auto 0;
+  opacity: 0;
+}
+
+.motion .mise__etape:first-child {
+  opacity: 1;
+}
+
+@media (max-width: 899.98px) {
+  .motion .mise__scene {
+    gap: 1.25rem;
+  }
+
+  .motion .mise__dessin svg {
+    height: 44vh;
+    height: 44svh;
+  }
+
+  .motion .mise__titre {
+    font-size: clamp(2rem, 1.2rem + 4vw, 3rem);
+  }
+}

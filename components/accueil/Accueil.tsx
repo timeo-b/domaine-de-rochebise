@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ElementType } from "react";
 import type { Dictionnaire } from "@/content/fr";
+import { MiseEnBouteille } from "./MiseEnBouteille";
 import { ROUTES, SITE, type Langue } from "@/content/site";
 import { Bouteille } from "@/components/Bouteille";
 import { Courbes } from "@/components/Courbes";
@@ -97,6 +98,8 @@ export function Accueil({ langue, t }: Props) {
         </div>
        </div>
       </section>
+
+      <MiseEnBouteille t={t.mise} href={r.vins} />
 
       {/* ── Le lieu ───────────────────────────────────────────────── */}
       <section id="lieu" className="chapitre lieu" aria-labelledby="lieu-nom" data-altitude-debut>

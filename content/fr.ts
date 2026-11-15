@@ -97,6 +97,22 @@ export const FR = {
       alt: "Vignes en terrasses sur un coteau abrupt, dans la lumière du soir.",
     },
 
+    mise: {
+      nom: "La mise en bouteille",
+      description: "Une bouteille de vin rouge du domaine, cuvée Premier Palier, avec son bouchon, sa capsule et son étiquette.",
+      cuvee: "Premier Palier",
+      cepage: "Syrah",
+      dos: ["Vin rouge", "Mis en bouteille", "au domaine", "75 cl", "Exemple fictif"],
+      lien: "Découvrir les quatre vins",
+      etapes: [
+        { titre: "Le verre", texte: "Tout commence par une bouteille vide, lourde et sombre, qui gardera le vin à l'abri de la lumière." },
+        { titre: "Le vin", texte: "Douze mois de fût, puis la mise en bouteille au domaine, sans hâte, un matin de printemps." },
+        { titre: "Le bouchon", texte: "Du liège naturel, d'un seul tenant. Il laissera le vin vieillir dix ans s'il le faut." },
+        { titre: "L'étiquette", texte: "Posée à la main, une à une. Chaque cuvée porte le nom d'une terrasse du coteau." },
+        { titre: "Premier Palier", texte: "La syrah des premières terrasses, au-dessus du fleuve. Un rouge franc et poivré, celui que l'on ouvre en premier." },
+      ],
+    },
+
     lieu: {
       nom: "Le lieu",
       phrase: ["Ici, on ne cultive pas", "la pente. On la tient."],
