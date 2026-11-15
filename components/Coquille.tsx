@@ -22,7 +22,7 @@ export function Coquille({ langue, t, children }: Props) {
 
   return (
     <>
-      <a className="evitement" href="#contenu">
+      <a className="evitement" href="#contenu" data-hors-menu>
         {t.evitement}
       </a>
 

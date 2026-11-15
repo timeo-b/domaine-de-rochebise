@@ -47,15 +47,22 @@ function installer(gsap: Gsap, ScrollTrigger: Declencheur) {
     });
 
     // 2. Les paragraphes et les images montent doucement.
+    // On ne joue que sur l'opacité, jamais sur `visibility` : un lien encore
+    // transparent doit rester atteignable à la tabulation.
     gsap.utils.toArray<HTMLElement>("[data-entree]").forEach((el) => {
       if (dejaVisible(el)) return;
-      gsap.from(el, {
-        autoAlpha: 0,
+      const entree = gsap.from(el, {
+        opacity: 0,
         y: 28,
         duration: 1,
         ease: "expo.out",
         scrollTrigger: { trigger: el, start: "top 88%", once: true },
       });
+      // Au clavier, le focus peut arriver avant le défilement : on montre le
+      // bloc tout de suite, pour que le focus soit visible sans délai.
+      const montrer = () => entree.progress(1);
+      el.addEventListener("focusin", montrer);
+      remises.push(() => el.removeEventListener("focusin", montrer));
     });
 
     if (large) {

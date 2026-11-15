@@ -221,6 +221,7 @@
 
 .lieu__figure {
   position: relative;
+  padding-right: 14%;
 }
 
 .lieu__figure .cadre {
@@ -234,10 +235,10 @@
 
 .lieu__courbes {
   position: absolute;
-  top: -14%;
-  right: -22%;
-  width: 78%;
-  height: 128%;
+  top: -10%;
+  right: -10%;
+  width: 64%;
+  height: 120%;
   color: var(--laiton);
 }
 
@@ -391,7 +392,7 @@
 
 @media (min-width: 900px) {
   .cave::after {
-    background: linear-gradient(90deg, rgba(26, 16, 22, 0.3) 0%, rgba(26, 16, 22, 0.82) 50%, rgba(26, 16, 22, 0.95) 100%);
+    background: linear-gradient(90deg, rgba(26, 16, 22, 0.3) 0%, rgba(26, 16, 22, 0.88) 46%, rgba(26, 16, 22, 0.96) 100%);
   }
 
   .cave__contenu {
@@ -402,8 +403,8 @@
 
   .visite::after {
     background:
-      linear-gradient(90deg, rgba(26, 16, 22, 0.94) 0%, rgba(26, 16, 22, 0.82) 48%, rgba(26, 16, 22, 0.45) 100%),
-      linear-gradient(0deg, rgba(26, 16, 22, 0.8) 0%, rgba(26, 16, 22, 0) 50%);
+      linear-gradient(90deg, rgba(26, 16, 22, 0.93) 0%, rgba(26, 16, 22, 0.8) 44%, rgba(26, 16, 22, 0.2) 100%),
+      linear-gradient(0deg, rgba(26, 16, 22, 0.7) 0%, rgba(26, 16, 22, 0) 40%);
   }
 
   .visite__contenu {
@@ -431,6 +432,9 @@
 
 /* Sur téléphone : une rangée que l'on fait défiler au doigt. */
 .cuvees {
+  /* Repère des éléments en position absolue qu'elle contient : sans lui, le
+     texte réservé aux lecteurs d'écran élargirait la page sur téléphone. */
+  position: relative;
   margin: clamp(2.5rem, 5vw, 4rem) calc(-1 * var(--marge)) 0;
   padding: 0 var(--marge) 1.25rem;
   display: flex;
@@ -571,8 +575,7 @@
     display: flex;
     align-items: baseline;
     gap: 0.6rem;
-    writing-mode: vertical-rl;
-    transform: translate(-50%, -50%) rotate(180deg);
+    transform: translate(-50%, -50%) rotate(-90deg);
     color: var(--brume);
     font-size: 0.9375rem;
     line-height: 1.2;

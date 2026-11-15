@@ -42,13 +42,15 @@ const PHOTOS = [
     // Recadrage vertical pour le téléphone, centré sur les terrasses.
     portrait: { cadre: [0.33, 0.13, 0.4, 0.87], largeurs: PORTRAIT },
   },
-  { nom: "lieu", source: "lieu-terrasses.jpg", cadre: [0, 0.06, 1, 0.84], largeurs: DEMI_ECRAN, lumiere: 0.95, saturation: 0.85 },
-  { nom: "hiver", source: "hiver-taille.jpg", cadre: [0.04, 0.1, 0.92, 0.82], largeurs: DEMI_ECRAN, lumiere: 0.78, saturation: 0.72 },
+  // On garde le haut de l'image, où la route prend moins de place.
+  { nom: "lieu", source: "lieu-terrasses.jpg", cadre: [0, 0, 0.64, 0.5], largeurs: DEMI_ECRAN, lumiere: 0.98, saturation: 0.85 },
+  // Cadrage serré sous l'horizon : le ciel, très clair, jurait avec le reste.
+  { nom: "hiver", source: "hiver-taille.jpg", cadre: [0.1, 0.36, 0.85, 0.62], largeurs: DEMI_ECRAN, lumiere: 0.85, saturation: 0.78 },
   { nom: "printemps", source: "printemps-b.jpg", cadre: [0.06, 0.08, 0.88, 0.88], largeurs: DEMI_ECRAN, lumiere: 0.82, saturation: 0.9 },
   { nom: "ete", source: "ete-rangs.jpg", cadre: [0, 0.2, 1, 0.8], largeurs: DEMI_ECRAN, lumiere: 0.76, saturation: 0.8 },
   { nom: "automne", source: "automne-vendange.jpg", cadre: [0.1, 0, 0.8, 1], largeurs: DEMI_ECRAN, lumiere: 0.9, saturation: 0.9 },
-  { nom: "cave", source: "cave-futs-a.jpg", cadre: [0, 0.05, 1, 0.9], largeurs: PLEIN_ECRAN, lumiere: 1.08, saturation: 0.9 },
-  { nom: "visite", source: "visite-soir.jpg", cadre: [0, 0, 1, 1], largeurs: PLEIN_ECRAN, lumiere: 0.92, saturation: 0.88 },
+  { nom: "cave", source: "cave-futs-a.jpg", cadre: [0, 0.05, 1, 0.9], largeurs: PLEIN_ECRAN, lumiere: 1.35, saturation: 0.9 },
+  { nom: "visite", source: "visite-soir.jpg", cadre: [0, 0, 1, 1], largeurs: PLEIN_ECRAN, lumiere: 1, saturation: 0.9 },
   { nom: "degustation", source: "degustation.jpg", cadre: [0.05, 0.1, 0.9, 0.85], largeurs: DEMI_ECRAN, lumiere: 0.98, saturation: 0.9 },
 ];
 

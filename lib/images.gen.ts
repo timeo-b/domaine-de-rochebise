@@ -95,86 +95,86 @@ export const PHOTOS = {
     }
   },
   "lieu": {
-    "largeur": 3200,
-    "hauteur": 2388,
+    "largeur": 2048,
+    "hauteur": 1422,
     "avif": [
       [
         480,
-        "/images/lieu-480.09391136.avif"
+        "/images/lieu-480.be5de9f7.avif"
       ],
       [
         720,
-        "/images/lieu-720.4c148e38.avif"
+        "/images/lieu-720.654178c4.avif"
       ],
       [
         960,
-        "/images/lieu-960.e589d7c4.avif"
+        "/images/lieu-960.bb0a5e38.avif"
       ],
       [
         1440,
-        "/images/lieu-1440.f8e4a36a.avif"
+        "/images/lieu-1440.34ed6b96.avif"
       ]
     ],
     "webp": [
       [
         480,
-        "/images/lieu-480.346a1df2.webp"
+        "/images/lieu-480.18910ab8.webp"
       ],
       [
         720,
-        "/images/lieu-720.c2625c00.webp"
+        "/images/lieu-720.ee14f827.webp"
       ],
       [
         960,
-        "/images/lieu-960.e2d36b38.webp"
+        "/images/lieu-960.b0ecda4b.webp"
       ],
       [
         1440,
-        "/images/lieu-1440.fb31b900.webp"
+        "/images/lieu-1440.818bebc6.webp"
       ]
     ],
-    "flou": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAABwBACdASoYABIAPu1mqk2ppaQiMAgBMB2JZwC0NCHfzr08ymKCFHzd7hbcAAD+8NBjSph28BGOEra7ugASsjLyCbIRb2WaHEOJSrRiOwAAAA=="
+    "flou": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAwBACdASoYABEAPu1ksFAppSSisBgIATAdiWcAy6QZVJVTX8DS1Bk5zAgA/u+ntBkkdPjTO1v9m+zt2rndW4hEJGyKU9QXF/eiRs2mmREogAAA"
   },
   "hiver": {
-    "largeur": 2944,
-    "hauteur": 1968,
+    "largeur": 2720,
+    "hauteur": 1488,
     "avif": [
       [
         480,
-        "/images/hiver-480.d5fb25c0.avif"
+        "/images/hiver-480.411a912b.avif"
       ],
       [
         720,
-        "/images/hiver-720.9221fc8e.avif"
+        "/images/hiver-720.80934376.avif"
       ],
       [
         960,
-        "/images/hiver-960.ea668ea0.avif"
+        "/images/hiver-960.664d0794.avif"
       ],
       [
         1440,
-        "/images/hiver-1440.89785a85.avif"
+        "/images/hiver-1440.fe7f4a68.avif"
       ]
     ],
     "webp": [
       [
         480,
-        "/images/hiver-480.a1bf6b8a.webp"
+        "/images/hiver-480.1b618459.webp"
       ],
       [
         720,
-        "/images/hiver-720.f916da42.webp"
+        "/images/hiver-720.6d61dd04.webp"
       ],
       [
         960,
-        "/images/hiver-960.6d515840.webp"
+        "/images/hiver-960.b0f45c45.webp"
       ],
       [
         1440,
-        "/images/hiver-1440.80f425f0.webp"
+        "/images/hiver-1440.5d762118.webp"
       ]
     ],
-    "flou": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAwCdASoYABAAPu1iqk2ppaQiMAgBMB2JYwCdABX5rVbVcrn5wGgAAMLNVYzSCIjjVgctnNrbVdMzdfj63lUjaMusvqmKGPb/UHQlkLYqGV7wYwAAAA=="
+    "flou": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAwCdASoYAA0APu1kqU2ppaQiMAgBMB2JQBOmUABMItu0Ph2QNJYAAP6jAvIg7iFcOMj/UwtZZgUGAW8XGNzVAgZf4H7A/zh56UYAXVoHRQ9V/AAAAA=="
   },
   "printemps": {
     "largeur": 2816,
@@ -305,48 +305,48 @@ export const PHOTOS = {
     "avif": [
       [
         640,
-        "/images/cave-640.35fc1fc9.avif"
+        "/images/cave-640.83357853.avif"
       ],
       [
         960,
-        "/images/cave-960.fd902aa6.avif"
+        "/images/cave-960.156dcec7.avif"
       ],
       [
         1280,
-        "/images/cave-1280.c703c7c8.avif"
+        "/images/cave-1280.3bc2a773.avif"
       ],
       [
         1920,
-        "/images/cave-1920.5b32fd4f.avif"
+        "/images/cave-1920.7bb918f8.avif"
       ],
       [
         2560,
-        "/images/cave-2560.59ec5f1b.avif"
+        "/images/cave-2560.bfff77de.avif"
       ]
     ],
     "webp": [
       [
         640,
-        "/images/cave-640.37009b5b.webp"
+        "/images/cave-640.ad4c4e54.webp"
       ],
       [
         960,
-        "/images/cave-960.cb33021c.webp"
+        "/images/cave-960.d25116a7.webp"
       ],
       [
         1280,
-        "/images/cave-1280.f40222a0.webp"
+        "/images/cave-1280.d4317c23.webp"
       ],
       [
         1920,
-        "/images/cave-1920.8192459a.webp"
+        "/images/cave-1920.0ff83199.webp"
       ],
       [
         2560,
-        "/images/cave-2560.e444645b.webp"
+        "/images/cave-2560.8203edac.webp"
       ]
     ],
-    "flou": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAgCdASoYAA4APu1kqk4ppaQiMAgBMB2JZ2jZADe2AAD+8I3HglNsQtmg4+R+4dGAVCtC9AAAAA=="
+    "flou": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAQAwCdASoYAA4APu1iqU2ppaOiMAgBMB2JZwAAWlCkqkAA/vQp8LuoIUGqWgonqe5Dao+ERRKPwfAA"
   },
   "visite": {
     "largeur": 3200,
@@ -354,48 +354,48 @@ export const PHOTOS = {
     "avif": [
       [
         640,
-        "/images/visite-640.dee8653a.avif"
+        "/images/visite-640.86dd8c6e.avif"
       ],
       [
         960,
-        "/images/visite-960.b7bd2fd4.avif"
+        "/images/visite-960.b5c89538.avif"
       ],
       [
         1280,
-        "/images/visite-1280.d09b7b8f.avif"
+        "/images/visite-1280.4289be85.avif"
       ],
       [
         1920,
-        "/images/visite-1920.1c1a9434.avif"
+        "/images/visite-1920.0734837e.avif"
       ],
       [
         2560,
-        "/images/visite-2560.47fa1ad2.avif"
+        "/images/visite-2560.5c062db3.avif"
       ]
     ],
     "webp": [
       [
         640,
-        "/images/visite-640.adfc7a8e.webp"
+        "/images/visite-640.47dea945.webp"
       ],
       [
         960,
-        "/images/visite-960.f900fd09.webp"
+        "/images/visite-960.c42d0999.webp"
       ],
       [
         1280,
-        "/images/visite-1280.0720fc19.webp"
+        "/images/visite-1280.ed6ffef8.webp"
       ],
       [
         1920,
-        "/images/visite-1920.deff8f96.webp"
+        "/images/visite-1920.afb96d89.webp"
       ],
       [
         2560,
-        "/images/visite-2560.ccc4df45.webp"
+        "/images/visite-2560.7eb709e3.webp"
       ]
     ],
-    "flou": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAwCdASoYAAwAPu1iqU2ppaOiMAgBMB2JYwCdABwufSGu38rpiSlAAMrgc7fROW54EfeNQodidaph6oCPI6xjLpttYTEY+qmAAA=="
+    "flou": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAwCdASoYAAwAPu1iqU2ppaQiMAgBMB2JYwCdABwsHJUunAs0tnQA3ggW4aLa+wcfAko1XzUtiJV9EczIkHOoQmnQQnkAdDEaYAAA"
   },
   "degustation": {
     "largeur": 2880,
