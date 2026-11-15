@@ -97,7 +97,7 @@ export function Accueil({ langue, t }: Props) {
           <figure className="lieu__figure" data-entree>
             <Courbes className="lieu__courbes" />
             <div className="cadre cadre--portrait">
-              <Photo nom="lieu" alt={t.lieu.alt} sizes="(min-width: 900px) 42vw, 100vw" parallaxe={6} />
+              <Photo nom="lieu" alt={t.lieu.alt} sizes="(min-width: 1440px) 480px, (min-width: 900px) 34vw, 78vw" parallaxe={6} />
             </div>
           </figure>
         </div>
@@ -116,7 +116,7 @@ export function Accueil({ langue, t }: Props) {
               <div className="saison" key={s.saison}>
                 <figure className={`saison__media${i === 0 ? " est-actif" : ""}`} data-media>
                   <div className="cadre">
-                    <Photo nom={s.photo} alt={s.alt} sizes="(min-width: 900px) 48vw, 100vw" />
+                    <Photo nom={s.photo} alt={s.alt} sizes="(min-width: 1440px) 1200px, (min-width: 900px) 84vw, 91vw" />
                   </div>
                 </figure>
                 <div className={`saison__texte${i === 0 ? " est-actif" : ""}`} data-etape style={rang(i)}>
@@ -223,7 +223,7 @@ export function Accueil({ langue, t }: Props) {
           </div>
           <figure className="visite__verres" data-entree>
             <div className="cadre cadre--paysage">
-              <Photo nom="degustation" alt={t.visite.altVerres} sizes="(min-width: 900px) 32vw, 100vw" />
+              <Photo nom="degustation" alt={t.visite.altVerres} sizes="(min-width: 1440px) 540px, (min-width: 900px) 37vw, 100vw" />
             </div>
           </figure>
         </div>

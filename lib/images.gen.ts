@@ -62,78 +62,70 @@ export const PHOTOS = {
     ],
     "flou": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAwCdASoYAAwAPu1iqU2ppaOiMAgBMB2JYwCdACHZ41dXRcGSmvAAAP6gSKpQt2DfF1yfq4uOZuRlgbO9H6LJs+0qOAAA",
     "portrait": {
-      "largeur": 1280,
+      "largeur": 880,
       "hauteur": 1566,
       "avif": [
         [
           480,
-          "/images/hero-portrait-480.e19be2be.avif"
+          "/images/hero-portrait-480.cb318199.avif"
         ],
         [
-          720,
-          "/images/hero-portrait-720.8f30aac6.avif"
+          750,
+          "/images/hero-portrait-750.a77345c9.avif"
         ],
         [
-          1080,
-          "/images/hero-portrait-1080.39acc651.avif"
+          880,
+          "/images/hero-portrait-880.32199503.avif"
         ]
       ],
       "webp": [
         [
           480,
-          "/images/hero-portrait-480.ba11f548.webp"
+          "/images/hero-portrait-480.d0b1d035.webp"
         ],
         [
-          720,
-          "/images/hero-portrait-720.ccc39e2a.webp"
+          750,
+          "/images/hero-portrait-750.8ffbbba6.webp"
         ],
         [
-          1080,
-          "/images/hero-portrait-1080.ece833ff.webp"
+          880,
+          "/images/hero-portrait-880.bfb0f77a.webp"
         ]
       ]
     }
   },
   "lieu": {
-    "largeur": 2048,
+    "largeur": 960,
     "hauteur": 1422,
     "avif": [
       [
         480,
-        "/images/lieu-480.be5de9f7.avif"
+        "/images/lieu-480.d87608d4.avif"
       ],
       [
         720,
-        "/images/lieu-720.654178c4.avif"
+        "/images/lieu-720.0591a67a.avif"
       ],
       [
         960,
-        "/images/lieu-960.bb0a5e38.avif"
-      ],
-      [
-        1440,
-        "/images/lieu-1440.34ed6b96.avif"
+        "/images/lieu-960.6c1aa567.avif"
       ]
     ],
     "webp": [
       [
         480,
-        "/images/lieu-480.18910ab8.webp"
+        "/images/lieu-480.5e266b5b.webp"
       ],
       [
         720,
-        "/images/lieu-720.ee14f827.webp"
+        "/images/lieu-720.f74cbe80.webp"
       ],
       [
         960,
-        "/images/lieu-960.b0ecda4b.webp"
-      ],
-      [
-        1440,
-        "/images/lieu-1440.818bebc6.webp"
+        "/images/lieu-960.cbdd35d1.webp"
       ]
     ],
-    "flou": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAwBACdASoYABEAPu1ksFAppSSisBgIATAdiWcAy6QZVJVTX8DS1Bk5zAgA/u+ntBkkdPjTO1v9m+zt2rndW4hEJGyKU9QXF/eiRs2mmREogAAA"
+    "flou": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAABQBQCdASoYACMAPtFWpU2oJKOiNUwBABoJZwDPKENsR2d7MdeQtj3IWg0YFmpDir0P4gAA/vC2tj0A/XWir2yiyDJZvjU7tsxXeC4j3W8SSkelR+4TdCE/Ei+8i6HhEKcfsHnDdSjWoAAA"
   },
   "hiver": {
     "largeur": 2720,
@@ -152,6 +144,10 @@ export const PHOTOS = {
         "/images/hiver-960.664d0794.avif"
       ],
       [
+        1200,
+        "/images/hiver-1200.a23446a4.avif"
+      ],
+      [
         1440,
         "/images/hiver-1440.fe7f4a68.avif"
       ]
@@ -168,6 +164,10 @@ export const PHOTOS = {
       [
         960,
         "/images/hiver-960.b0f45c45.webp"
+      ],
+      [
+        1200,
+        "/images/hiver-1200.17e7763e.webp"
       ],
       [
         1440,
@@ -193,6 +193,10 @@ export const PHOTOS = {
         "/images/printemps-960.2d78ca33.avif"
       ],
       [
+        1200,
+        "/images/printemps-1200.bdf7bd6f.avif"
+      ],
+      [
         1440,
         "/images/printemps-1440.be483b0a.avif"
       ]
@@ -209,6 +213,10 @@ export const PHOTOS = {
       [
         960,
         "/images/printemps-960.e91ee4ad.webp"
+      ],
+      [
+        1200,
+        "/images/printemps-1200.d1dd447d.webp"
       ],
       [
         1440,
@@ -234,6 +242,10 @@ export const PHOTOS = {
         "/images/ete-960.c6a1fe20.avif"
       ],
       [
+        1200,
+        "/images/ete-1200.86d24a50.avif"
+      ],
+      [
         1440,
         "/images/ete-1440.ad7526d0.avif"
       ]
@@ -250,6 +262,10 @@ export const PHOTOS = {
       [
         960,
         "/images/ete-960.7b96e671.webp"
+      ],
+      [
+        1200,
+        "/images/ete-1200.c20ce16c.webp"
       ],
       [
         1440,
@@ -275,6 +291,10 @@ export const PHOTOS = {
         "/images/automne-960.d2561a6e.avif"
       ],
       [
+        1200,
+        "/images/automne-1200.5cd070d9.avif"
+      ],
+      [
         1440,
         "/images/automne-1440.9e83de59.avif"
       ]
@@ -291,6 +311,10 @@ export const PHOTOS = {
       [
         960,
         "/images/automne-960.cb2beab1.webp"
+      ],
+      [
+        1200,
+        "/images/automne-1200.d517a402.webp"
       ],
       [
         1440,
@@ -414,6 +438,10 @@ export const PHOTOS = {
         "/images/degustation-960.66833ec2.avif"
       ],
       [
+        1200,
+        "/images/degustation-1200.2fc99b57.avif"
+      ],
+      [
         1440,
         "/images/degustation-1440.e31910c6.avif"
       ]
@@ -430,6 +458,10 @@ export const PHOTOS = {
       [
         960,
         "/images/degustation-960.3a58713e.webp"
+      ],
+      [
+        1200,
+        "/images/degustation-1200.fe8b52ed.webp"
       ],
       [
         1440,

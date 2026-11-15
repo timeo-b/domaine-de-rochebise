@@ -23,8 +23,9 @@ const SORTIE = "public/images";
 const TABLE = "lib/images.gen.ts";
 
 const PLEIN_ECRAN = [640, 960, 1280, 1920, 2560];
-const DEMI_ECRAN = [480, 720, 960, 1440];
-const PORTRAIT = [480, 720, 1080];
+const DEMI_ECRAN = [480, 720, 960, 1200, 1440];
+// 750 px : un écran de 375 points à densité 2. 880 px : toute la largeur disponible dans l'original.
+const PORTRAIT = [480, 750, 880];
 
 /**
  * `cadre` : zone gardée dans l'original, en fractions (gauche, haut,
@@ -39,11 +40,13 @@ const PHOTOS = [
     largeurs: PLEIN_ECRAN,
     lumiere: 0.8,
     saturation: 0.85,
-    // Recadrage vertical pour le téléphone, centré sur les terrasses.
-    portrait: { cadre: [0.33, 0.13, 0.4, 0.87], largeurs: PORTRAIT },
+    // Recadrage vertical pour le téléphone, centré sur les terrasses, aux
+    // proportions d'un écran (9:16) : tout ce qui est téléchargé est affiché.
+    portrait: { cadre: [0.3925, 0.13, 0.275, 0.87], largeurs: PORTRAIT },
   },
-  // On garde le haut de l'image, où la route prend moins de place.
-  { nom: "lieu", source: "lieu-terrasses.jpg", cadre: [0, 0, 0.64, 0.5], largeurs: DEMI_ECRAN, lumiere: 0.98, saturation: 0.85 },
+  // On garde le haut de l'image, où la route prend moins de place, aux
+  // proportions de son cadre vertical (parallaxe comprise).
+  { nom: "lieu", source: "lieu-terrasses.jpg", cadre: [0.17, 0, 0.3, 0.5], largeurs: DEMI_ECRAN, lumiere: 0.98, saturation: 0.85 },
   // Cadrage serré sous l'horizon : le ciel, très clair, jurait avec le reste.
   { nom: "hiver", source: "hiver-taille.jpg", cadre: [0.1, 0.36, 0.85, 0.62], largeurs: DEMI_ECRAN, lumiere: 0.85, saturation: 0.78 },
   { nom: "printemps", source: "printemps-b.jpg", cadre: [0.06, 0.08, 0.88, 0.88], largeurs: DEMI_ECRAN, lumiere: 0.82, saturation: 0.9 },

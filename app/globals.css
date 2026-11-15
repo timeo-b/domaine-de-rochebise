@@ -434,6 +434,61 @@ main:focus {
   display: block;
 }
 
+/* ── Révélations au défilement ─────────────────────────────────────
+   Les classes `a-reveler`, `est-revele`, `en-attente` et `est-chargee`
+   sont posées par le script (components/Mouvement.tsx), jamais par le
+   HTML : sans script, rien n'est caché. Elles ne valent qu'avec les
+   animations actives, et seuls `transform` et `opacity` bougent. */
+
+.motion .a-reveler[data-lignes] .ligne__in {
+  transform: translateY(108%);
+}
+
+.motion .a-reveler[data-entree] {
+  opacity: 0;
+  transform: translateY(1.75rem);
+}
+
+.motion .a-reveler.est-revele[data-lignes] .ligne__in {
+  transform: none;
+  transition: transform var(--duree-ligne) var(--sortie);
+  transition-delay: calc(var(--i, 0) * var(--ecart-ligne));
+}
+
+.motion .a-reveler.est-revele[data-entree] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 1000ms var(--sortie),
+    transform 1000ms var(--sortie);
+}
+
+/* Bloc atteint au clavier avant d'avoir défilé : il se montre d'un coup. */
+.motion .a-reveler.sans-attente[data-entree],
+.motion .a-reveler.sans-attente[data-lignes] .ligne__in {
+  transition: none;
+}
+
+/* Une image encore en route laisse voir son aperçu flou, puis arrive en fondu. */
+.motion .photo img.en-attente {
+  opacity: 0;
+}
+
+.motion .photo img.en-attente.est-chargee {
+  opacity: 1;
+  transition: opacity 600ms ease;
+}
+
+/* À l'impression, tout le contenu est là, révélé ou non. */
+@media print {
+  .a-reveler[data-entree],
+  .a-reveler[data-lignes] .ligne__in,
+  .photo img.en-attente {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* ── Pied de page ────────────────────────────────────────────────── */
 
 .pied {
