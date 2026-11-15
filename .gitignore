@@ -1,0 +1,21 @@
+# dépendances
+/node_modules
+
+# next.js
+/.next/
+/out/
+/build
+
+# divers
+.DS_Store
+*.pem
+npm-debug.log*
+.env*
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Photos d'origine téléchargées sur Unsplash : trop lourdes pour le dépôt.
+# Les versions optimisées sont dans public/images, et CREDITS.md donne
+# l'adresse de chaque original.
+/sources/

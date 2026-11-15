@@ -1,0 +1,599 @@
+/* ═══════════════════════════════════════════════════════════════════
+   L'ACCUEIL
+
+   Deux états, un seul balisage :
+     - sans la classe `motion` (mouvement réduit, bouton du pied de page,
+       ou pas de JavaScript) : tout est à plat, chaque image près de son
+       texte, rien ne bouge ;
+     - avec `motion` : ouverture animée, scènes épinglées sur ordinateur,
+       révélations au défilement.
+
+   Sur les photos, un voile sombre garantit le contraste du texte : il
+   est vérifié par mesure sur capture, pas seulement à l'œil.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Ouverture ───────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: calc(var(--entete) + 2rem) var(--marge) clamp(2rem, 5vw, 3.5rem);
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(26, 16, 22, 0.86) 0%, rgba(26, 16, 22, 0) 26%),
+    linear-gradient(90deg, rgba(26, 16, 22, 0.92) 0%, rgba(26, 16, 22, 0.78) 40%, rgba(26, 16, 22, 0.3) 100%),
+    linear-gradient(0deg, rgba(26, 16, 22, 0.94) 0%, rgba(26, 16, 22, 0) 46%);
+}
+
+.hero__contenu {
+  max-width: 46rem;
+}
+
+.hero__titre {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: var(--t-hero);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+
+.hero__chapeau {
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  max-width: 34rem;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.4375rem);
+  line-height: 1.6;
+}
+
+.hero__actions {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.hero__suite {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 2.75rem;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.hero__suite::before {
+  content: "";
+  width: 1px;
+  height: 2.25rem;
+  background: var(--laiton);
+}
+
+.hero__suite:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--laiton);
+  text-underline-offset: 0.35em;
+}
+
+@media (max-width: 899.98px) {
+  .hero::after {
+    background: linear-gradient(
+      180deg,
+      rgba(26, 16, 22, 0.84) 0%,
+      rgba(26, 16, 22, 0.5) 28%,
+      rgba(26, 16, 22, 0.88) 58%,
+      rgba(26, 16, 22, 0.97) 100%
+    );
+  }
+}
+
+@media (min-width: 900px) {
+  .hero__suite {
+    position: absolute;
+    right: var(--marge);
+    bottom: clamp(2rem, 5vw, 3.5rem);
+    margin-top: 0;
+  }
+}
+
+/* L'ouverture est animée en CSS : elle part au premier affichage, sans
+   attendre le JavaScript. L'image, elle, est visible tout de suite. */
+.motion .hero__titre .ligne__in {
+  transform: translateY(108%);
+  animation: monter var(--duree-ligne) var(--sortie) forwards;
+  animation-delay: calc(200ms + var(--i) * var(--ecart-ligne));
+}
+
+.motion .hero__chapeau,
+.motion .hero__actions,
+.motion .hero__suite {
+  opacity: 0;
+  transform: translateY(1rem);
+  animation: apparaitre 900ms var(--sortie) forwards;
+  animation-delay: 750ms;
+}
+
+.motion .hero__actions {
+  animation-delay: 900ms;
+}
+
+.motion .hero__suite {
+  animation-delay: 1050ms;
+}
+
+.motion .hero__image .photo {
+  animation: poser 2400ms var(--sortie) both;
+}
+
+@keyframes monter {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes apparaitre {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes poser {
+  from {
+    transform: scale(1.07);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ── Chapitres ───────────────────────────────────────────────────── */
+
+.chapitre {
+  padding: clamp(5rem, 11vw, 10.5rem) var(--marge);
+}
+
+.chapitre__interieur {
+  max-width: var(--largeur);
+  margin: 0 auto;
+}
+
+.chapitre__nom {
+  font-family: var(--font-serif), Garamond, Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.875rem);
+  line-height: 1.2;
+  color: var(--laiton);
+}
+
+.phrase {
+  margin-top: 0.6rem;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: var(--t-phrase);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+}
+
+.texte {
+  max-width: var(--mesure);
+}
+
+.texte p + p {
+  margin-top: 1.2em;
+}
+
+.phrase + .texte {
+  margin-top: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+/* ── Le lieu ─────────────────────────────────────────────────────── */
+
+.lieu {
+  overflow: clip;
+}
+
+.lieu__grille {
+  display: grid;
+  gap: 3rem;
+}
+
+.lieu__lien {
+  margin-top: 1.5rem;
+}
+
+.lieu__figure {
+  position: relative;
+}
+
+.lieu__figure .cadre {
+  z-index: 1;
+}
+
+.courbes {
+  width: 100%;
+  height: 100%;
+}
+
+.lieu__courbes {
+  position: absolute;
+  top: -14%;
+  right: -22%;
+  width: 78%;
+  height: 128%;
+  color: var(--laiton);
+}
+
+@media (min-width: 900px) {
+  .lieu__grille {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: clamp(3rem, 7vw, 8rem);
+    align-items: center;
+  }
+}
+
+/* ── La vigne ────────────────────────────────────────────────────── */
+
+.saisons {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  gap: clamp(3.5rem, 8vw, 6rem);
+}
+
+.saison {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.saison__saison {
+  font-family: var(--font-serif), Garamond, Georgia, serif;
+  font-style: italic;
+  font-size: 1.4375rem;
+  line-height: 1.2;
+  color: var(--laiton);
+}
+
+.saison__titre {
+  margin: 0.2rem 0 0.9rem;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(1.875rem, 1.4rem + 1.9vw, 3rem);
+  line-height: 1.1;
+}
+
+.saison__texte p:last-child {
+  max-width: var(--mesure);
+}
+
+@media (min-width: 900px) {
+  /* À plat : l'image et son texte côte à côte. */
+  .saison {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: clamp(3rem, 6vw, 7rem);
+    align-items: center;
+  }
+
+  /* Scène épinglée : les quatre images occupent la même place, à droite,
+     et se relaient pendant que les textes défilent à gauche. */
+  .motion .saisons {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    column-gap: clamp(3rem, 6vw, 7rem);
+    row-gap: 0;
+  }
+
+  .motion .saison {
+    display: contents;
+  }
+
+  .motion .saison__texte {
+    grid-column: 1;
+    grid-row: calc(var(--i) + 1);
+    min-height: 78vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .motion .saison__media {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    position: sticky;
+    top: calc(var(--entete) + 6vh);
+    height: min(72vh, 46rem);
+    align-self: start;
+    opacity: 0;
+    transition: opacity 1200ms var(--va-et-vient);
+  }
+
+  .motion .saison__media.est-actif {
+    opacity: 1;
+  }
+
+  .motion .saison__media .cadre {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+/* ── Sections sur photo plein écran ──────────────────────────────── */
+
+.pleine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 92vh;
+  min-height: 92svh;
+  display: grid;
+  align-items: center;
+  padding: clamp(6rem, 12vw, 11rem) var(--marge);
+}
+
+.pleine__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.pleine__image .photo {
+  position: absolute;
+  inset: 0;
+  height: auto;
+}
+
+.cadre .photo {
+  height: auto;
+}
+
+.pleine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(26, 16, 22, 0.8);
+}
+
+.pleine__contenu {
+  width: 100%;
+  max-width: var(--largeur);
+  margin: 0 auto;
+}
+
+.cave__contenu > * {
+  width: min(100%, 36rem);
+}
+
+.visite__contenu {
+  display: grid;
+  gap: 3rem;
+}
+
+.visite__texte .actions {
+  margin-top: 2rem;
+}
+
+@media (min-width: 900px) {
+  .cave::after {
+    background: linear-gradient(90deg, rgba(26, 16, 22, 0.3) 0%, rgba(26, 16, 22, 0.82) 50%, rgba(26, 16, 22, 0.95) 100%);
+  }
+
+  .cave__contenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .visite::after {
+    background:
+      linear-gradient(90deg, rgba(26, 16, 22, 0.94) 0%, rgba(26, 16, 22, 0.82) 48%, rgba(26, 16, 22, 0.45) 100%),
+      linear-gradient(0deg, rgba(26, 16, 22, 0.8) 0%, rgba(26, 16, 22, 0) 50%);
+  }
+
+  .visite__contenu {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: clamp(3rem, 6vw, 7rem);
+    align-items: end;
+  }
+
+  /* Parallaxe : la photo déborde un peu de son cadre pour pouvoir glisser. */
+  .motion .cadre .photo[data-parallaxe],
+  .motion .pleine__image .photo[data-parallaxe] {
+    inset: -9% 0;
+  }
+}
+
+/* ── Les vins ────────────────────────────────────────────────────── */
+
+.vins {
+  background-color: var(--teinte, var(--nuit));
+}
+
+.motion .vins {
+  transition: background-color 1200ms var(--va-et-vient);
+}
+
+/* Sur téléphone : une rangée que l'on fait défiler au doigt. */
+.cuvees {
+  margin: clamp(2.5rem, 5vw, 4rem) calc(-1 * var(--marge)) 0;
+  padding: 0 var(--marge) 1.25rem;
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--marge);
+}
+
+.cuvee {
+  flex: 0 0 min(76vw, 19rem);
+  scroll-snap-align: start;
+  display: grid;
+  align-content: start;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+  background: var(--lie);
+}
+
+.cuvee__media {
+  display: flex;
+  justify-content: center;
+}
+
+.bouteille {
+  width: auto;
+  height: clamp(15rem, 52vw, 20rem);
+}
+
+.bouteille__nom {
+  font-family: var(--font-serif), Garamond, Georgia, serif;
+  font-style: italic;
+  font-size: 21px;
+  fill: #1a1016;
+}
+
+.bouteille__cepage {
+  font-family: var(--font-sans-fort), Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  fill: #1a1016;
+}
+
+.bouteille__domaine {
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 9.5px;
+  fill: #1a1016;
+}
+
+.cuvee__nom {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  line-height: 1.1;
+}
+
+.cuvee__cepage {
+  margin: 0.25rem 0 0.75rem;
+  font-family: var(--font-serif), Garamond, Georgia, serif;
+  font-style: italic;
+  font-size: 1.4375rem;
+  line-height: 1.2;
+  color: var(--laiton);
+}
+
+.cuvee__lien {
+  margin-top: 0.75rem;
+}
+
+.vins__tous {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (min-width: 900px) {
+  /* À plat : les quatre cuvées en ligne. */
+  .cuvees {
+    margin-inline: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    overflow: visible;
+  }
+
+  /* Scène épinglée : la bouteille reste à gauche, les textes défilent. */
+  .motion .cuvees {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    column-gap: clamp(3rem, 6vw, 7rem);
+    row-gap: 0;
+  }
+
+  .motion .cuvee {
+    display: contents;
+  }
+
+  .motion .cuvee__media {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    position: sticky;
+    top: calc(var(--entete) + 5vh);
+    height: min(74vh, 46rem);
+    align-self: start;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1200ms var(--va-et-vient);
+  }
+
+  .motion .cuvee__media.est-actif {
+    opacity: 1;
+  }
+
+  .motion .cuvee__media .bouteille {
+    height: min(64vh, 40rem);
+  }
+
+  .motion .cuvee__texte {
+    grid-column: 2;
+    grid-row: calc(var(--i) + 1);
+    min-height: 74vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ── Le compteur d'altitude ──────────────────────────────────────── */
+
+.altitude {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .motion .altitude {
+    position: fixed;
+    left: calc(var(--marge) / 2);
+    top: 50%;
+    z-index: 20;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    writing-mode: vertical-rl;
+    transform: translate(-50%, -50%) rotate(180deg);
+    color: var(--brume);
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 400ms ease,
+      visibility 400ms;
+  }
+
+  .motion .altitude.est-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .altitude__valeur {
+    font-family: var(--font-serif), Garamond, Georgia, serif;
+    font-size: 1.4375rem;
+    color: var(--pierre);
+  }
+}

@@ -1,0 +1,538 @@
+/* ═══════════════════════════════════════════════════════════════════
+   STYLES COMMUNS
+   Piste « la nuit sur le coteau » : fond prune très sombre, texte pierre
+   blonde, accent laiton.
+
+   Contrastes mesurés sur le fond (--nuit) :
+     pierre 14,6:1   brume 8,1:1   laiton 7,7:1
+   et sur les surfaces (--lie) : pierre 12,9:1, brume 7,1:1, laiton 6,8:1.
+   Tous dépassent le seuil AA (4,5:1), y compris pour le petit texte.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --nuit: #1a1016;
+  --lie: #2a1b25;
+  --pierre: #ebe3d5;
+  --brume: #b3a9a8;
+  --laiton: #c2a367;
+  --laiton-clair: #d6bb85;
+  --filet: #6f6468;
+
+  /* Texte courant : grand, et très interligné, pour rester confortable
+     en clair sur sombre. */
+  --t-corps: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);
+  --t-petit: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+  --t-phrase: clamp(2.25rem, 1.2rem + 4.6vw, 5.25rem);
+  --t-hero: clamp(3.25rem, 1.4rem + 8.2vw, 8.5rem);
+  --interligne: 1.75;
+  --mesure: 36rem;
+
+  --marge: clamp(1.25rem, 0.25rem + 4vw, 4.5rem);
+  --largeur: 84rem;
+  --bandeau: 2.5rem;
+  --entete: 4.5rem;
+
+  /* Rythme : lent pour les révélations, vif pour ce qui répond au doigt. */
+  --sortie: cubic-bezier(0.19, 1, 0.22, 1);
+  --va-et-vient: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --duree-ligne: 1100ms;
+  --ecart-ligne: 130ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: var(--entete);
+  scroll-padding-bottom: calc(var(--bandeau) + 1rem);
+  background: var(--nuit);
+}
+
+html.motion {
+  scroll-behavior: smooth;
+}
+
+html.menu-ouvert {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding-bottom: var(--bandeau);
+  background: var(--nuit);
+  color: var(--pierre);
+  font-family: var(--font-sans), "Century Gothic", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--t-corps);
+  font-weight: 400;
+  line-height: var(--interligne);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul[class] {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Les mots longs passent à la ligne plutôt que de sortir de l'écran,
+   y compris quand le visiteur élargit l'espacement du texte. */
+p,
+li,
+h1,
+h2,
+h3,
+a {
+  overflow-wrap: break-word;
+}
+
+:focus-visible {
+  outline: 2px solid var(--laiton-clair);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+main:focus {
+  outline: none;
+}
+
+::selection {
+  background: var(--laiton);
+  color: var(--nuit);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Lien d'évitement ────────────────────────────────────────────── */
+
+.evitement {
+  position: absolute;
+  left: -9999px;
+  top: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--laiton);
+  color: var(--nuit);
+  font-family: var(--font-sans-fort), Arial, sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.evitement:focus {
+  left: 0.75rem;
+}
+
+/* ── Bandeau de démonstration, permanent ─────────────────────────── */
+
+.bandeau {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 60;
+  min-height: var(--bandeau);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 1rem;
+  background: var(--lie);
+  color: var(--pierre);
+  font-size: 0.875rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.bandeau a {
+  text-decoration: underline;
+  text-decoration-color: var(--laiton);
+  text-underline-offset: 0.25em;
+}
+
+/* ── En-tête ─────────────────────────────────────────────────────── */
+
+.entete {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  min-height: var(--entete);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem var(--marge);
+  background: transparent;
+  transition: background-color 200ms ease;
+}
+
+.entete[data-defile="oui"],
+.menu-ouvert .entete {
+  background: rgba(26, 16, 22, 0.96);
+}
+
+.entete__nom {
+  margin-right: auto;
+  padding: 0.5rem 0;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.entete__nav ul {
+  display: flex;
+  gap: clamp(1rem, 2.2vw, 2.25rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entete__nav a,
+.pied__liens a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: 1rem;
+  text-decoration: none;
+  background: linear-gradient(var(--laiton), var(--laiton)) left 82% / 0 1px no-repeat;
+  transition: background-size 250ms var(--sortie);
+}
+
+.entete__nav a:hover,
+.entete__nav a:focus-visible,
+.pied__liens a:hover,
+.pied__liens a:focus-visible {
+  background-size: 100% 1px;
+}
+
+.entete__bouton {
+  display: none;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  background: transparent;
+  border: 1px solid var(--laiton);
+  border-radius: 2px;
+  font-family: var(--font-sans-fort), Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.menu-mobile {
+  position: fixed;
+  inset: var(--entete) 0 0 0;
+  z-index: 49;
+  overflow-y: auto;
+  padding: 2rem var(--marge) calc(var(--bandeau) + 2rem);
+  background: var(--nuit);
+}
+
+.menu-mobile[hidden] {
+  display: none;
+}
+
+.menu-mobile ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-mobile a {
+  display: block;
+  padding: 0.6rem 0;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+@media (max-width: 899.98px) {
+  .entete__nav {
+    display: none;
+  }
+
+  .entete__bouton {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .menu-mobile {
+    display: none;
+  }
+}
+
+/* ── Éléments communs ────────────────────────────────────────────── */
+
+.repere-haut {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 3rem;
+  pointer-events: none;
+}
+
+.lien {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  text-decoration: underline;
+  text-decoration-color: var(--laiton);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+  transition: text-decoration-color 150ms ease;
+}
+
+.lien:hover {
+  text-decoration-color: var(--pierre);
+}
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.5rem 1.9rem;
+  background: var(--laiton);
+  color: var(--nuit);
+  border: 1px solid var(--laiton);
+  border-radius: 2px;
+  font-family: var(--font-sans-fort), Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.0625rem;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.bouton--contour {
+  background: transparent;
+  color: var(--pierre);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .bouton:hover {
+    background: var(--laiton-clair);
+    border-color: var(--laiton-clair);
+    color: var(--nuit);
+  }
+}
+
+.motion .bouton {
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    transform 150ms var(--sortie);
+}
+
+.motion .bouton:active {
+  transform: scale(0.97);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 2rem;
+}
+
+/* Une photo : l'aperçu flou sert de fond pendant le chargement. */
+.photo {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Un cadre réserve la place de la photo et la recadre. */
+.cadre {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--lie);
+}
+
+.cadre--portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.cadre--paysage {
+  aspect-ratio: 4 / 3;
+}
+
+.cadre .photo {
+  position: absolute;
+  inset: 0;
+}
+
+/* Une ligne de titre : le masque d'où le texte surgit. */
+.ligne {
+  display: block;
+  overflow: hidden;
+  /* Un peu d'air pour ne couper ni les accents ni les jambages. */
+  padding: 0.12em 0 0.16em;
+  margin: -0.12em 0 -0.16em;
+}
+
+.ligne__in {
+  display: block;
+}
+
+/* ── Pied de page ────────────────────────────────────────────────── */
+
+.pied {
+  border-top: 1px solid var(--filet);
+  padding: clamp(3rem, 6vw, 5rem) var(--marge) 2.5rem;
+  font-size: var(--t-petit);
+  line-height: 1.65;
+}
+
+.pied__interieur {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.pied__nom {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.pied__note {
+  color: var(--brume);
+}
+
+.pied__liens {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.pied__legal {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 40rem;
+  color: var(--brume);
+}
+
+.pied__bas {
+  max-width: var(--largeur);
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--filet);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  color: var(--brume);
+}
+
+.pied__bas a {
+  color: var(--pierre);
+  text-decoration: underline;
+  text-decoration-color: var(--laiton);
+  text-underline-offset: 0.25em;
+}
+
+.bascule {
+  min-height: 2.75rem;
+  padding: 0 1.1rem;
+  background: transparent;
+  color: var(--pierre);
+  border: 1px solid var(--filet);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.bascule:hover {
+  border-color: var(--laiton);
+}
+
+.bascule__note {
+  max-width: 28rem;
+}
+
+@media (min-width: 900px) {
+  .pied__interieur {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 3fr) minmax(0, 5fr);
+    gap: 4rem;
+  }
+}
+
+/* ── Page en attente (étape intermédiaire) ───────────────────────── */
+
+.attente {
+  min-height: 80svh;
+  display: grid;
+  align-content: center;
+  gap: 1.5rem;
+  padding: calc(var(--entete) + 4rem) var(--marge) 5rem;
+  max-width: 50rem;
+}
+
+.attente h1 {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: var(--t-phrase);
+  line-height: 1.02;
+}
