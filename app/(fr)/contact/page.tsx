@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { PageEnAttente } from "@/components/PageEnAttente";
-import { FR } from "@/content/fr";
-import { ROUTES } from "@/content/site";
+import { Contact } from "@/components/pages/Contact";
+import { PAGES } from "@/content/pages-fr";
 
-export const metadata: Metadata = { title: "Contact et accès" };
+export const metadata: Metadata = { title: PAGES.contact.meta.titre, description: PAGES.contact.meta.description };
 
 export default function Page() {
-  const t = FR.commun.enAttente;
-  return <PageEnAttente titre="Contact et accès" texte={t.texte} retour={t.retour} accueil={ROUTES.fr.accueil} />;
+  return <Contact />;
 }

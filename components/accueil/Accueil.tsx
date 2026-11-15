@@ -207,7 +207,7 @@ export function Accueil({ langue, t }: Props) {
                   <p>{c.parcelle}</p>
                   <p>{c.notes}</p>
                   <p className="cuvee__lien">
-                    <Link className="lien" href={r.vins}>
+                    <Link className="lien" href={`${r.vins}/${c.slug}`}>
                       {t.vins.voir}
                       <span className="sr-only"> {c.nom}</span>
                     </Link>

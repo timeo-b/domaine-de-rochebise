@@ -1,0 +1,654 @@
+/* ═══════════════════════════════════════════════════════════════════
+   PAGES INTÉRIEURES
+   Mêmes couleurs et mêmes rythmes que l'accueil. Toutes les pages se
+   lisent sans animation ; les révélations viennent en plus.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.page {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: calc(var(--entete) + clamp(3rem, 8vw, 7rem)) var(--marge) clamp(4rem, 9vw, 8rem);
+}
+
+.page--etroite {
+  max-width: 52rem;
+}
+
+.page__titre {
+  margin-top: 0.6rem;
+}
+
+.page__sous-titre {
+  font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem);
+}
+
+.page__chapeau {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 40rem;
+  font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
+  line-height: 1.6;
+}
+
+.page__section {
+  margin-top: clamp(4rem, 9vw, 8rem);
+}
+
+.page__note {
+  margin-top: 2rem;
+  font-size: var(--t-petit);
+  color: var(--brume);
+}
+
+.duo {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  margin-top: clamp(3rem, 7vw, 6rem);
+}
+
+@media (min-width: 900px) {
+  .duo {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    align-items: start;
+  }
+
+  .duo--inverse {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+  }
+}
+
+.puces {
+  margin: 1.5rem 0 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 0.8rem;
+  max-width: var(--mesure);
+}
+
+.puces li::marker {
+  color: var(--laiton);
+}
+
+/* ── Les vins ────────────────────────────────────────────────────── */
+
+.gamme {
+  list-style: none;
+  margin: clamp(3rem, 7vw, 6rem) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.gamme__vin {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) 2fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  background: var(--teinte, var(--lie));
+  border: 1px solid var(--filet);
+}
+
+.gamme__bouteille,
+.fiche__bouteille,
+.boutique__bouteille {
+  display: flex;
+  justify-content: center;
+}
+
+.gamme__bouteille .bouteille {
+  width: auto;
+  height: clamp(13rem, 30vw, 20rem);
+}
+
+.gamme__couleur {
+  font-size: var(--t-petit);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--laiton);
+}
+
+.gamme__nom {
+  margin: 0.3rem 0;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.gamme__cepage {
+  font-family: var(--font-serif), Garamond, Georgia, serif;
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  color: var(--laiton);
+}
+
+.gamme__prix {
+  margin: 0.75rem 0;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-size: 1.875rem;
+}
+
+@media (min-width: 900px) {
+  .gamme {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fiche__grille {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.fiche__bouteille {
+  padding: clamp(2rem, 5vw, 4rem);
+  background: var(--teinte, var(--lie));
+  border: 1px solid var(--filet);
+}
+
+.fiche__bouteille .bouteille {
+  width: auto;
+  height: clamp(20rem, 60vh, 36rem);
+}
+
+.fiche__liste {
+  margin: 2.5rem 0 0;
+  border-top: 1px solid var(--filet);
+}
+
+.fiche__liste div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--filet);
+}
+
+.fiche__liste dt {
+  color: var(--laiton);
+}
+
+.fiche__liste dd {
+  margin: 0;
+}
+
+.fiche__prix {
+  margin: 2rem 0 1.5rem;
+}
+
+.fiche__prix strong {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 400;
+  font-size: 2.25rem;
+  margin-right: 0.4rem;
+}
+
+.fiche__autres {
+  margin-top: clamp(4rem, 9vw, 7rem);
+}
+
+.fiche__autres ul {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.fiche__autres a {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--filet);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 200ms ease;
+}
+
+.fiche__autres a:hover {
+  border-color: var(--laiton);
+}
+
+.fiche__autre-nom {
+  display: block;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 900px) {
+  .fiche__grille {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+    align-items: start;
+  }
+
+  .fiche__bouteille {
+    position: sticky;
+    top: calc(var(--entete) + 2rem);
+  }
+
+  .fiche__autres ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Le domaine ──────────────────────────────────────────────────── */
+
+.generations,
+.chiffres,
+.formules {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.generations li {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--filet);
+}
+
+.generations__rang {
+  font-size: var(--t-petit);
+  letter-spacing: 0.14em;
+  color: var(--laiton);
+}
+
+.generations h3,
+.formules h3 {
+  margin: 0.3rem 0 0.6rem;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+  line-height: 1.1;
+}
+
+.chiffres__valeur {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  line-height: 1;
+  color: var(--laiton-clair);
+  margin-bottom: 0.75rem;
+}
+
+.chiffres__valeur span {
+  font-size: 0.3em;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 700px) {
+  .generations,
+  .chiffres {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .generations,
+  .chiffres {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Visites ─────────────────────────────────────────────────────── */
+
+.formules li {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--lie);
+  border: 1px solid var(--filet);
+}
+
+.formules__duree {
+  font-family: var(--font-serif), Garamond, Georgia, serif;
+  font-style: italic;
+  font-size: 1.375rem;
+  color: var(--laiton);
+  margin-bottom: 0.75rem;
+}
+
+.formules__prix {
+  margin-top: 1.25rem;
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-size: 2rem;
+}
+
+.formules__prix span {
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: var(--t-petit);
+  color: var(--brume);
+}
+
+.visites__image {
+  margin: 2.5rem 0 0;
+}
+
+@media (min-width: 900px) {
+  .formules {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ── Formulaires ─────────────────────────────────────────────────── */
+
+.carte-form {
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--lie);
+  border: 1px solid var(--filet);
+}
+
+.carte-form__titre {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(1.875rem, 1.5rem + 1.5vw, 2.75rem);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.formulaire {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.formulaire__demo {
+  padding: 0.9rem 1.1rem;
+  border-left: 2px solid var(--laiton);
+  background: rgba(194, 163, 103, 0.1);
+  font-size: var(--t-petit);
+  line-height: 1.6;
+}
+
+.formulaire__rang {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 560px) {
+  .formulaire__rang {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.champ label {
+  display: block;
+  font-family: var(--font-sans-fort), var(--font-sans), Arial, sans-serif;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.champ__aide {
+  font-size: var(--t-petit);
+  color: var(--brume);
+  margin-bottom: 0.4rem;
+}
+
+.champ input,
+.champ select,
+.champ textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  line-height: 1.4;
+  color: var(--pierre);
+  background: var(--nuit);
+  border: 1px solid var(--brume);
+  border-radius: 0;
+  color-scheme: dark;
+}
+
+.champ textarea {
+  resize: vertical;
+}
+
+.champ [aria-invalid="true"] {
+  border-color: #f0a48f;
+  border-width: 2px;
+}
+
+.champ__erreur {
+  margin-top: 0.4rem;
+  font-size: var(--t-petit);
+  color: #f0a48f;
+}
+
+.champ__erreur::before {
+  content: "Erreur : ";
+  font-weight: 500;
+}
+
+.resume {
+  padding: 1rem 1.25rem;
+  border: 2px solid #f0a48f;
+  font-size: var(--t-petit);
+}
+
+.resume ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2em;
+}
+
+.resume a {
+  color: #f0a48f;
+}
+
+.fin {
+  margin-top: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 2px solid var(--laiton);
+  background: rgba(194, 163, 103, 0.1);
+}
+
+.fin h3 {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.fin .bouton {
+  margin-top: 1.25rem;
+}
+
+/* ── Boutique ────────────────────────────────────────────────────── */
+
+.boutique {
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+}
+
+.boutique__grille {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-top: 2.5rem;
+}
+
+.boutique__vins {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.boutique__vin {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem;
+  border: 1px solid var(--filet);
+}
+
+.boutique__bouteille .bouteille {
+  width: auto;
+  height: 12rem;
+}
+
+.quantite {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--laiton);
+}
+
+.quantite button {
+  width: 2.75rem;
+  height: 2.75rem;
+  font: inherit;
+  font-size: 1.375rem;
+  color: var(--pierre);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.quantite button:hover {
+  background: rgba(194, 163, 103, 0.18);
+}
+
+.quantite span {
+  min-width: 2.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.panier__lignes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panier__lignes li,
+.panier__totaux div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--filet);
+}
+
+.panier__nombre {
+  color: var(--brume);
+}
+
+.panier__totaux {
+  margin: 0 0 1rem;
+}
+
+.panier__totaux dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.panier__total {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-size: 1.75rem;
+}
+
+.panier .actions {
+  margin: 1.25rem 0 1rem;
+}
+
+.panier__vider {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+@media (min-width: 1000px) {
+  .boutique__grille {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+  }
+
+  .boutique__vins {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panier {
+    position: sticky;
+    top: calc(var(--entete) + 1.5rem);
+  }
+}
+
+/* ── Contact ─────────────────────────────────────────────────────── */
+
+.contact__infos {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.contact__infos address {
+  margin-top: 1rem;
+  font-style: normal;
+}
+
+.contact__infos address span {
+  display: block;
+}
+
+.horaires {
+  margin: 1rem 0 0;
+  max-width: 32rem;
+}
+
+.horaires div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--filet);
+}
+
+.horaires dd {
+  margin: 0;
+  color: var(--brume);
+}
+
+.plan {
+  margin: 1.5rem 0 0;
+}
+
+.plan svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--filet);
+}
+
+.plan__texte {
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 15px;
+  fill: #ebe3d5;
+}
+
+.plan figcaption {
+  margin-top: 0.75rem;
+  font-size: var(--t-petit);
+  color: var(--brume);
+}
+
+/* ── Mentions légales ────────────────────────────────────────────── */
+
+.mentions__section {
+  margin-top: 3rem;
+  max-width: var(--mesure);
+}
+
+.mentions__section h2 {
+  font-family: var(--font-titre), Garamond, Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.625rem, 1.4rem + 1vw, 2.25rem);
+  line-height: 1.2;
+  margin-bottom: 0.9rem;
+}
+
+.mentions__section p + p {
+  margin-top: 1em;
+}

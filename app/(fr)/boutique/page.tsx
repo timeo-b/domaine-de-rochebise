@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { PageEnAttente } from "@/components/PageEnAttente";
-import { FR } from "@/content/fr";
-import { ROUTES } from "@/content/site";
+import { Boutique } from "@/components/pages/Boutique";
+import { Tete } from "@/components/pages/Tete";
+import { PAGES } from "@/content/pages-fr";
 
-export const metadata: Metadata = { title: "Boutique" };
+const t = PAGES.boutique;
+export const metadata: Metadata = { title: t.meta.titre, description: t.meta.description };
 
 export default function Page() {
-  const t = FR.commun.enAttente;
-  return <PageEnAttente titre="Boutique" texte={t.texte} retour={t.retour} accueil={ROUTES.fr.accueil} />;
+  return (
+    <article className="page" aria-labelledby="page-titre">
+      <Tete id="page-titre" nom={t.nom} titre={t.titre} chapeau={t.chapeau} />
+      <Boutique />
+    </article>
+  );
 }

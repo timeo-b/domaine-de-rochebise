@@ -1,0 +1,207 @@
+// ═══════════════════════════════════════════════════════════════════
+// TEXTES FRANÇAIS DES PAGES INTÉRIEURES
+// Mêmes règles que content/fr.ts. Tout est fictif : famille, prix,
+// horaires, adresse, téléphone absent exprès.
+// ═══════════════════════════════════════════════════════════════════
+
+import { FR } from "./fr";
+import { SITE } from "./site";
+
+const DETAILS: Record<string, { couleur: string; millesime: string; prix: number; elevage: string; garde: string; table: string; recit: string }> = {
+  "premier-palier": {
+    couleur: "Rouge",
+    millesime: "2024",
+    prix: 14,
+    elevage: "Douze mois en cuve et en fûts de plusieurs vins.",
+    garde: "À boire dans les cinq ans.",
+    table: "Une volaille rôtie, une planche de charcuterie, un fromage de chèvre sec.",
+    recit:
+      "Ce sont les premières terrasses que l’on rencontre en montant du fleuve, et les vignes les plus jeunes du domaine. Le vin leur ressemble : direct, fruité, sans détour. C’est celui que l’on ouvre en premier, et souvent celui que l’on finit.",
+  },
+  "le-fruit-du-mur": {
+    couleur: "Rouge",
+    millesime: "2023",
+    prix: 24,
+    elevage: "Dix-huit mois en demi-muids, sans bois neuf.",
+    garde: "À attendre deux ans, à garder dix ans et plus.",
+    table: "Un agneau de sept heures, un gibier, des légumes rôtis au thym.",
+    recit:
+      "Les vieilles vignes poussent au cœur de la pente, là où les murs sont les plus hauts. Elles donnent peu, de petites grappes serrées. Le vin est sombre et droit, il demande un peu de patience et la rend largement.",
+  },
+  "pierre-blonde": {
+    couleur: "Blanc",
+    millesime: "2024",
+    prix: 19,
+    elevage: "Dix mois en fûts et en cuve, sur ses lies.",
+    garde: "À boire dans les six ans.",
+    table: "Un poisson de rivière, une volaille à la crème, un picodon.",
+    recit:
+      "Marsanne et roussanne poussent sur une terrasse de granite clair, presque blond au soleil. La première apporte la chair, la seconde le parfum. Un blanc ample, qui finit sur une pointe d’amande.",
+  },
+  "dernier-mur": {
+    couleur: "Blanc",
+    millesime: "2024",
+    prix: 28,
+    elevage: "Douze mois en demi-muids.",
+    garde: "À boire dans les cinq ans, pour garder ses parfums.",
+    table: "Des asperges, un poisson grillé, un fromage à croûte fleurie.",
+    recit:
+      "Tout en haut du coteau, la dernière terrasse regarde le plateau. Le viognier y mûrit lentement, au vent. Abricot, fleurs blanches, et une fraîcheur que l’on n’attend pas à cette altitude.",
+  },
+};
+
+export const CUVEES = FR.accueil.vins.cuvees.map((c) => ({ ...c, ...DETAILS[c.slug] }));
+export type CuveeComplete = (typeof CUVEES)[number];
+
+export const euros = (n: number) => `${n.toLocaleString("fr-FR")} €`;
+
+export const PAGES = {
+  vins: {
+    meta: { titre: "Les vins", description: `Les quatre cuvées du ${SITE.nom} : deux rouges de syrah et deux blancs. Domaine fictif, exemple de site réalisé par Nexura.` },
+    nom: "Les vins",
+    titre: ["Quatre vins,", "un seul coteau."],
+    chapeau: "Deux rouges de syrah, deux blancs. Chaque cuvée porte le nom de l’endroit où poussent ses vignes, du bas de la pente jusqu’au dernier mur.",
+    voir: "Découvrir",
+    fiche: { cepage: "Cépage", parcelle: "Parcelle", elevage: "Élevage", garde: "Garde", table: "À table", prix: "Prix au domaine", bouteille: "la bouteille de 75 cl", acheter: "Ajouter depuis la boutique", retour: "Tous les vins", autres: "Les autres cuvées" },
+    note: "Vins de la vallée du Rhône. Prix et millésimes fictifs.",
+  },
+  domaine: {
+    meta: { titre: "Le domaine", description: `Quatre générations sur les mêmes terrasses de granite : l’histoire du ${SITE.nom}. Domaine fictif, exemple de site réalisé par Nexura.` },
+    nom: "Le domaine",
+    titre: ["Quatre générations,", "la même pente."],
+    chapeau: "Au-dessus du Rhône, la pente ne se cultive pas, elle se tient.",
+    histoire: [
+      "Quatre générations d’une même famille ont remonté ici les murets de pierre sèche, attaché chaque cep à son échalas et vendangé à la main, parce qu’aucune machine ne passe sur ces terrasses.",
+      "Le granite donne peu, mais il donne juste : des syrahs droites, des blancs amples, que l’on élève sans hâte.",
+    ],
+    generationsTitre: "Quatre prénoms",
+    generations: [
+      { prenom: "Joseph", texte: "Il a planté les premières terrasses, mur après mur, avec les pierres sorties du sol." },
+      { prenom: "Marthe", texte: "Elle a gardé la vigne quand beaucoup quittaient les coteaux pour les vergers de la plaine." },
+      { prenom: "Henri", texte: "Il a replanté ce que les ronces avaient repris, et il est toujours dans les vignes." },
+      { prenom: "Clémence", texte: "Sa fille vinifie aujourd’hui les sept hectares, et signe les quatre cuvées." },
+    ],
+    chiffresTitre: "Le domaine en quelques repères",
+    chiffres: [
+      { valeur: "7", unite: "hectares", texte: "de vignes en terrasses" },
+      { valeur: String(SITE.altitude.haut - SITE.altitude.bas), unite: "mètres", texte: "de dénivelé entre le premier et le dernier rang" },
+      { valeur: "4", unite: "cuvées", texte: "deux rouges et deux blancs" },
+      { valeur: "0", unite: "tracteur", texte: "tout se fait à la main ou au treuil" },
+    ],
+    travailTitre: ["Peu de gestes,", "tous à la main."],
+    travail: [
+      "À la vigne, on travaille les sols, on ne désherbe pas chimiquement, et l’on vendange en petites caisses pour ne rien écraser.",
+      "À la cave, les raisins fermentent avec leurs propres levures. Le vin repose ensuite en fûts et en demi-muids, de douze à dix-huit mois.",
+    ],
+    suite: "Venir voir les terrasses",
+    altCave: "Rangées de fûts de chêne dans la pénombre d’une cave.",
+    altLieu: "Vue du ciel : des terrasses de vigne sur un coteau.",
+  },
+  visites: {
+    meta: { titre: "Visites et dégustations", description: `Visiter le ${SITE.nom} et goûter les quatre cuvées. Réservation de démonstration : rien n’est enregistré. Domaine fictif.` },
+    nom: "Visites et dégustations",
+    titre: ["La vue", "se mérite."],
+    chapeau: "On monte à pied jusqu’aux dernières terrasses, puis on redescend à la cave goûter les quatre vins. Comptez de bonnes chaussures.",
+    formulesTitre: "Trois façons de venir",
+    formules: [
+      { id: "degustation", nom: "La dégustation", duree: "45 minutes", prix: 12, texte: "Les quatre cuvées, commentées à la cave. Offerte dès six bouteilles achetées." },
+      { id: "montee", nom: "La montée", duree: "2 heures", prix: 25, texte: "La marche dans les terrasses avec la vigneronne, puis la dégustation des quatre cuvées." },
+      { id: "table", nom: "La table du coteau", duree: "3 heures", prix: 58, texte: "La montée, la dégustation, puis un repas froid de produits du pays, servi face au fleuve." },
+    ],
+    pratiqueTitre: "Avant de venir",
+    pratique: ["Du mardi au samedi, sur rendez-vous.", "De deux à dix personnes par visite.", "Le sentier est raide et caillouteux : il n’est pas praticable en fauteuil. La dégustation à la cave, elle, est de plain-pied.", "Les chiens tenus en laisse sont les bienvenus."],
+    alt: "Verres de vin posés sur une table, en fin de journée.",
+    reservation: {
+      titre: "Demander une date",
+      intro: "Tous les champs sont obligatoires, sauf mention contraire.",
+      formule: "Formule",
+      date: "Date souhaitée",
+      personnes: "Nombre de personnes",
+      personnesAide: "De 2 à 10.",
+      nom: "Votre nom",
+      courriel: "Votre adresse électronique",
+      courrielAide: "Format attendu : nom@exemple.fr",
+      message: "Un mot pour nous (facultatif)",
+      envoyer: "Envoyer la demande",
+      demo: "Démonstration : ce formulaire n’envoie rien et n’enregistre rien.",
+      erreurs: { resume: "Le formulaire contient des erreurs :", nom: "Indiquez votre nom.", courriel: "Indiquez une adresse électronique valide, par exemple nom@exemple.fr.", date: "Choisissez une date à venir.", personnes: "Indiquez un nombre de personnes entre 2 et 10." },
+      succesTitre: "Demande prête",
+      succes: "Sur un vrai site, votre demande partirait maintenant vers le domaine, et vous recevriez une confirmation. Ici, rien n’a été envoyé ni conservé.",
+      recommencer: "Faire une autre demande",
+    },
+  },
+  boutique: {
+    meta: { titre: "Boutique", description: `Les quatre cuvées du ${SITE.nom}, à la bouteille. Boutique de démonstration : aucune commande, aucun paiement. Domaine fictif.` },
+    nom: "Boutique",
+    titre: ["Du coteau", "à votre table."],
+    chapeau: "Les quatre cuvées, à la bouteille. Expédition par cartons de six, que vous composez comme vous voulez.",
+    demo: "Boutique de démonstration : aucune commande n’est enregistrée, aucun paiement n’est possible. Votre panier reste dans votre navigateur, sur cet appareil.",
+    ajouter: "Ajouter au panier",
+    retirerUne: "Retirer une bouteille de",
+    ajouterUne: "Ajouter une bouteille de",
+    quantite: "Quantité",
+    panier: "Votre panier",
+    vide: "Votre panier est vide.",
+    bouteilles: (n: number) => `${n} bouteille${n > 1 ? "s" : ""}`,
+    sousTotal: "Sous-total",
+    port: "Livraison",
+    portOffert: "offerte",
+    portNote: "Livraison offerte dès douze bouteilles.",
+    total: "Total",
+    vider: "Vider le panier",
+    commander: "Passer la commande",
+    commandeTitre: "La démonstration s’arrête ici",
+    commande: "Sur un vrai site, vous passeriez maintenant au paiement sécurisé. Ici, rien n’est commandé ni payé.",
+    ajoute: (nom: string, n: number) => `${nom} : ${n} dans le panier.`,
+    majorite: "En commandant, vous certifiez avoir plus de 18 ans.",
+  },
+  contact: {
+    meta: { titre: "Contact et accès", description: `Écrire au ${SITE.nom} et trouver le chemin des terrasses. Adresse et carte fictives, exemple de site réalisé par Nexura.` },
+    nom: "Contact et accès",
+    titre: ["Au bout", "du chemin."],
+    chapeau: "La cave est au pied du coteau, à deux pas du fleuve. Le plus simple est encore de nous écrire avant de venir.",
+    adresseTitre: "Adresse",
+    adresse: ["Domaine de Rochebise", "Chemin des Terrasses", "Ardèche"],
+    adresseNote: "Adresse fictive : ce domaine n’existe pas.",
+    horairesTitre: "Horaires de la cave",
+    horaires: [
+      { jours: "Du mardi au vendredi", heures: "de 14 h à 18 h" },
+      { jours: "Le samedi", heures: "de 10 h à 12 h 30 et de 14 h à 18 h" },
+      { jours: "Dimanche et lundi", heures: "fermé" },
+    ],
+    accesTitre: "Pour venir",
+    acces: ["En voiture : suivre la route du fleuve, puis le chemin qui monte à gauche après le pont. Quelques places devant la cave.", "À vélo : la voie cyclable du bord du Rhône passe à cinq minutes.", "En train : la gare la plus proche est à un quart d’heure en voiture."],
+    carteTitre: "Plan d’accès",
+    carteAlt: "Plan schématique et fictif : le Rhône, la route qui le longe, un pont, puis un chemin en lacets qui monte du fleuve vers la cave et les terrasses du domaine.",
+    carteLegende: "Plan dessiné pour la démonstration. Il ne représente aucun lieu réel.",
+    carte: { fleuve: "Le Rhône", cave: "La cave", terrasses: "Les terrasses", pont: "Le pont" },
+    formulaire: {
+      titre: "Nous écrire",
+      intro: "Tous les champs sont obligatoires.",
+      nom: "Votre nom",
+      courriel: "Votre adresse électronique",
+      courrielAide: "Format attendu : nom@exemple.fr",
+      message: "Votre message",
+      envoyer: "Envoyer le message",
+      demo: "Démonstration : ce formulaire n’envoie rien et n’enregistre rien.",
+      erreurs: { resume: "Le formulaire contient des erreurs :", nom: "Indiquez votre nom.", courriel: "Indiquez une adresse électronique valide, par exemple nom@exemple.fr.", message: "Écrivez votre message." },
+      succesTitre: "Message prêt",
+      succes: "Sur un vrai site, votre message partirait maintenant vers le domaine. Ici, rien n’a été envoyé ni conservé.",
+      recommencer: "Écrire un autre message",
+    },
+  },
+  mentions: {
+    meta: { titre: "Mentions légales", description: "Ce site est une démonstration réalisée par Nexura. Le domaine, les vins, les prix et les personnes sont fictifs." },
+    nom: "Mentions légales",
+    titre: ["Tout ceci", "est un exemple."],
+    sections: [
+      { titre: "Un site de démonstration", textes: [`Le ${SITE.nom} n’existe pas. Ce site est un exemple réalisé par l’agence Nexura pour montrer ce que peut être une vitrine haut de gamme pour un domaine viticole.`, "Le domaine, la famille, les prénoms, les cuvées, les millésimes, les prix, les horaires, l’adresse et le plan sont inventés. Toute ressemblance avec un domaine, une marque ou une personne existants serait fortuite."] },
+      { titre: "Éditeur", textes: ["Ce site est édité par Nexura, agence web en Drôme-Ardèche. Les informations légales de l’agence figurent sur son site."], lien: { libelle: "agence-nexura.fr", href: SITE.agence.url } },
+      { titre: "Hébergement", textes: ["Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis."] },
+      { titre: "Formulaires, panier et données personnelles", textes: ["Les formulaires de réservation et de contact n’envoient rien et n’enregistrent rien : ce que vous y écrivez ne quitte pas votre navigateur.", "Le panier de la boutique et votre choix d’activer ou non les animations sont gardés dans le stockage local de votre navigateur, sur votre appareil. Ils ne servent à aucune mesure d’audience.", "Ce site ne dépose aucun cookie et n’utilise aucun outil de suivi. C’est pourquoi aucun bandeau de consentement ne s’affiche."] },
+      { titre: "Vente d’alcool", textes: ["Aucune vente n’a lieu sur ce site. Sur un vrai site de domaine, la vente d’alcool est interdite aux mineurs.", "L’abus d’alcool est dangereux pour la santé. À consommer avec modération."] },
+      { titre: "Photographies et dessins", textes: ["Les photographies viennent d’Unsplash et sont utilisées sous la licence Unsplash. Ce sont des illustrations : elles ne montrent pas le domaine, qui n’existe pas, et ont été prises dans d’autres vignobles.", "Les bouteilles, les étiquettes, les courbes de niveau et le plan d’accès sont dessinés en code. Le détail des crédits figure dans le fichier CREDITS.md du projet."] },
+      { titre: "Accessibilité", textes: ["Ce site vise le niveau AA du référentiel général d’amélioration de l’accessibilité. Une version sans animation s’affiche d’office si votre appareil demande moins de mouvement, et un bouton en pied de page permet de couper les animations."] },
+    ],
+  },
+} as const;

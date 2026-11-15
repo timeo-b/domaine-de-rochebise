@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { PageEnAttente } from "@/components/PageEnAttente";
-import { FR } from "@/content/fr";
-import { ROUTES } from "@/content/site";
+import { Mentions } from "@/components/pages/Mentions";
+import { PAGES } from "@/content/pages-fr";
 
-export const metadata: Metadata = { title: "Mentions légales" };
+export const metadata: Metadata = { title: PAGES.mentions.meta.titre, description: PAGES.mentions.meta.description };
 
 export default function Page() {
-  const t = FR.commun.enAttente;
-  return <PageEnAttente titre="Mentions légales" texte={t.texte} retour={t.retour} accueil={ROUTES.fr.accueil} />;
+  return <Mentions />;
 }
