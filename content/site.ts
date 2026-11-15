@@ -6,10 +6,10 @@
 // ═══════════════════════════════════════════════════════════════════
 
 export const SITE = {
-  nom: "Domaine de Rochebise",
+  nom: "Domaine de Costeroche",
   /** Forme courte, pour l'étiquette des bouteilles. */
-  court: "Rochebise",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://domaine-de-rochebise.vercel.app",
+  court: "Costeroche",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://domaine-de-costeroche.vercel.app",
   agence: { nom: "Nexura", url: "https://agence-nexura.fr" },
   /** Altitudes fictives, dans l'ordre de grandeur des coteaux du Rhône. */
   altitude: { bas: 121, haut: 334 },
