@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
-import { PAGES } from "@/content/pages-fr";
+import { pages } from "@/content/pages";
+import type { Langue } from "@/content/site";
 
 // ═══════════════════════════════════════════════════════════════════
 // Les deux formulaires de démonstration : réservation et contact.
@@ -18,7 +19,7 @@ import { PAGES } from "@/content/pages-fr";
 type Erreurs = Record<string, string>;
 const COURRIEL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-function Champ({ id, libelle, aide, erreur, children }: { id: string; libelle: string; aide?: string; erreur?: string; children: ReactNode }) {
+function Champ({ id, libelle, aide, erreur, prefixe, children }: { id: string; libelle: string; aide?: string; erreur?: string; prefixe?: string; children: ReactNode }) {
   return (
     <div className="champ">
       <label htmlFor={id}>{libelle}</label>
@@ -30,7 +31,7 @@ function Champ({ id, libelle, aide, erreur, children }: { id: string; libelle: s
       {children}
       {erreur ? (
         <p id={`${id}-erreur`} className="champ__erreur">
-          {erreur}
+          <strong>{prefixe}</strong> {erreur}
         </p>
       ) : null}
     </div>
@@ -86,9 +87,9 @@ function useFormulaire(valider: (donnees: FormData) => Erreurs) {
   return { erreurs, fini, refResume, soumettre, recommencer: () => setFini(false) };
 }
 
-export function Reservation() {
-  const t = PAGES.visites.reservation;
-  const formules = PAGES.visites.formules;
+export function Reservation({ langue }: { langue: Langue }) {
+  const t = pages(langue).visites.reservation;
+  const formules = pages(langue).visites.formules;
   const f = useFormulaire((d) => {
     const e: Erreurs = {};
     const demain = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
@@ -117,17 +118,17 @@ export function Reservation() {
         </select>
       </Champ>
       <div className="formulaire__rang">
-        <Champ id="res-date" libelle={t.date} erreur={e["res-date"]}>
+        <Champ id="res-date" libelle={t.date} erreur={e["res-date"]} prefixe={t.erreurs.prefixe}>
           <input id="res-date" name="date" type="date" required aria-invalid={e["res-date"] ? true : undefined} aria-describedby={decrit("res-date", false, e["res-date"])} />
         </Champ>
-        <Champ id="res-personnes" libelle={t.personnes} aide={t.personnesAide} erreur={e["res-personnes"]}>
+        <Champ id="res-personnes" libelle={t.personnes} aide={t.personnesAide} erreur={e["res-personnes"]} prefixe={t.erreurs.prefixe}>
           <input id="res-personnes" name="personnes" type="number" inputMode="numeric" min={2} max={10} defaultValue={2} required aria-invalid={e["res-personnes"] ? true : undefined} aria-describedby={decrit("res-personnes", true, e["res-personnes"])} />
         </Champ>
       </div>
-      <Champ id="res-nom" libelle={t.nom} erreur={e["res-nom"]}>
+      <Champ id="res-nom" libelle={t.nom} erreur={e["res-nom"]} prefixe={t.erreurs.prefixe}>
         <input id="res-nom" name="nom" type="text" autoComplete="name" required aria-invalid={e["res-nom"] ? true : undefined} aria-describedby={decrit("res-nom", false, e["res-nom"])} />
       </Champ>
-      <Champ id="res-courriel" libelle={t.courriel} aide={t.courrielAide} erreur={e["res-courriel"]}>
+      <Champ id="res-courriel" libelle={t.courriel} aide={t.courrielAide} erreur={e["res-courriel"]} prefixe={t.erreurs.prefixe}>
         <input id="res-courriel" name="courriel" type="email" autoComplete="email" required aria-invalid={e["res-courriel"] ? true : undefined} aria-describedby={decrit("res-courriel", true, e["res-courriel"])} />
       </Champ>
       <Champ id="res-message" libelle={t.message}>
@@ -140,8 +141,8 @@ export function Reservation() {
   );
 }
 
-export function Message() {
-  const t = PAGES.contact.formulaire;
+export function Message({ langue }: { langue: Langue }) {
+  const t = pages(langue).contact.formulaire;
   const f = useFormulaire((d) => {
     const e: Erreurs = {};
     if (!String(d.get("nom") || "").trim()) e["msg-nom"] = t.erreurs.nom;
@@ -156,13 +157,13 @@ export function Message() {
       <p className="formulaire__demo">{t.demo}</p>
       <p className="champ__aide">{t.intro}</p>
       <Resume titre={t.erreurs.resume} erreurs={e} refResume={f.refResume} />
-      <Champ id="msg-nom" libelle={t.nom} erreur={e["msg-nom"]}>
+      <Champ id="msg-nom" libelle={t.nom} erreur={e["msg-nom"]} prefixe={t.erreurs.prefixe}>
         <input id="msg-nom" name="nom" type="text" autoComplete="name" required aria-invalid={e["msg-nom"] ? true : undefined} aria-describedby={decrit("msg-nom", false, e["msg-nom"])} />
       </Champ>
-      <Champ id="msg-courriel" libelle={t.courriel} aide={t.courrielAide} erreur={e["msg-courriel"]}>
+      <Champ id="msg-courriel" libelle={t.courriel} aide={t.courrielAide} erreur={e["msg-courriel"]} prefixe={t.erreurs.prefixe}>
         <input id="msg-courriel" name="courriel" type="email" autoComplete="email" required aria-invalid={e["msg-courriel"] ? true : undefined} aria-describedby={decrit("msg-courriel", true, e["msg-courriel"])} />
       </Champ>
-      <Champ id="msg-message" libelle={t.message} erreur={e["msg-message"]}>
+      <Champ id="msg-message" libelle={t.message} erreur={e["msg-message"]} prefixe={t.erreurs.prefixe}>
         <textarea id="msg-message" name="message" rows={5} required aria-invalid={e["msg-message"] ? true : undefined} aria-describedby={decrit("msg-message", false, e["msg-message"])} />
       </Champ>
       <button type="submit" className="bouton">

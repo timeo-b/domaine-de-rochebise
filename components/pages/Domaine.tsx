@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Photo } from "@/components/Photo";
-import { PAGES } from "@/content/pages-fr";
-import { ROUTES } from "@/content/site";
+import { pages } from "@/content/pages";
+import { ROUTES, type Langue } from "@/content/site";
 import { Tete } from "./Tete";
 
-const t = PAGES.domaine;
-
-export function Domaine() {
+export function Domaine({ langue }: { langue: Langue }) {
+  const t = pages(langue).domaine;
   return (
     <article className="page" aria-labelledby="page-titre">
       <Tete id="page-titre" nom={t.nom} titre={t.titre} chapeau={t.chapeau} />
@@ -72,7 +71,7 @@ export function Domaine() {
               <p key={p}>{p}</p>
             ))}
             <p>
-              <Link className="lien" href={ROUTES.fr.visites}>
+              <Link className="lien" href={ROUTES[langue].visites}>
                 {t.suite}
               </Link>
             </p>

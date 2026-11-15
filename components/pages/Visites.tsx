@@ -1,11 +1,11 @@
 import { Photo } from "@/components/Photo";
-import { PAGES, euros } from "@/content/pages-fr";
+import { euros, pages } from "@/content/pages";
+import type { Langue } from "@/content/site";
 import { Tete } from "./Tete";
 import { Reservation } from "./Formulaires";
 
-const t = PAGES.visites;
-
-export function Visites() {
+export function Visites({ langue }: { langue: Langue }) {
+  const t = pages(langue).visites;
   return (
     <article className="page" aria-labelledby="page-titre">
       <Tete id="page-titre" nom={t.nom} titre={t.titre} chapeau={t.chapeau} />
@@ -21,7 +21,7 @@ export function Visites() {
               <p className="formules__duree">{f.duree}</p>
               <p>{f.texte}</p>
               <p className="formules__prix">
-                {euros(f.prix)} <span>par personne</span>
+                {euros(f.prix, langue)} <span>{t.parPersonne}</span>
               </p>
             </li>
           ))}
@@ -48,7 +48,7 @@ export function Visites() {
           <h2 id="reservation" className="carte-form__titre">
             {t.reservation.titre}
           </h2>
-          <Reservation />
+          <Reservation langue={langue} />
         </section>
       </div>
     </article>

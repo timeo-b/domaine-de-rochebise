@@ -1,11 +1,11 @@
-import { PAGES } from "@/content/pages-fr";
+import { pages } from "@/content/pages";
+import type { Langue } from "@/content/site";
 import { Tete } from "./Tete";
 import { Message } from "./Formulaires";
 
-const t = PAGES.contact;
-
 // Le plan est dessiné en code : il est fictif, comme l'adresse.
-function Plan() {
+function Plan({ langue }: { langue: Langue }) {
+  const t = pages(langue).contact;
   return (
     <figure className="plan">
       <svg viewBox="0 0 640 400" role="img" aria-label={t.carteAlt}>
@@ -31,7 +31,8 @@ function Plan() {
   );
 }
 
-export function Contact() {
+export function Contact({ langue }: { langue: Langue }) {
+  const t = pages(langue).contact;
   return (
     <article className="page" aria-labelledby="page-titre">
       <Tete id="page-titre" nom={t.nom} titre={t.titre} chapeau={t.chapeau} />
@@ -77,7 +78,7 @@ export function Contact() {
           <h2 id="ecrire" className="carte-form__titre">
             {t.formulaire.titre}
           </h2>
-          <Message />
+          <Message langue={langue} />
         </section>
       </div>
 
@@ -85,7 +86,7 @@ export function Contact() {
         <h2 id="plan" className="chapitre__nom">
           {t.carteTitre}
         </h2>
-        <Plan />
+        <Plan langue={langue} />
       </section>
     </article>
   );

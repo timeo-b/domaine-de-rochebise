@@ -414,8 +414,7 @@
   color: #f0a48f;
 }
 
-.champ__erreur::before {
-  content: "Erreur : ";
+.champ__erreur strong {
   font-weight: 500;
 }
 

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Mentions } from "@/components/pages/Mentions";
-import { PAGES } from "@/content/pages-fr";
+import { pages } from "@/content/pages";
+import { meta } from "@/lib/meta";
 
-export const metadata: Metadata = { title: PAGES.mentions.meta.titre, description: PAGES.mentions.meta.description };
+export const metadata: Metadata = meta("fr", "mentions", pages("fr").mentions.meta);
 
 export default function Page() {
-  return <Mentions />;
+  return <Mentions langue="fr" />;
 }

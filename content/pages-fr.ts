@@ -50,18 +50,16 @@ const DETAILS: Record<string, { couleur: string; millesime: string; prix: number
   },
 };
 
-export const CUVEES = FR.accueil.vins.cuvees.map((c) => ({ ...c, ...DETAILS[c.slug] }));
-export type CuveeComplete = (typeof CUVEES)[number];
+export const CUVEES_FR = FR.accueil.vins.cuvees.map((c) => ({ ...c, ...DETAILS[c.slug] }));
 
-export const euros = (n: number) => `${n.toLocaleString("fr-FR")} €`;
-
-export const PAGES = {
+export const PAGES_FR = {
   vins: {
     meta: { titre: "Les vins", description: `Les quatre cuvées du ${SITE.nom} : deux rouges de syrah et deux blancs. Domaine fictif, exemple de site réalisé par Nexura.` },
     nom: "Les vins",
     titre: ["Quatre vins,", "un seul coteau."],
     chapeau: "Deux rouges de syrah, deux blancs. Chaque cuvée porte le nom de l’endroit où poussent ses vignes, du bas de la pente jusqu’au dernier mur.",
     voir: "Découvrir",
+    bouteilleAlt: "Bouteille de la cuvée",
     fiche: { cepage: "Cépage", parcelle: "Parcelle", elevage: "Élevage", garde: "Garde", table: "À table", prix: "Prix au domaine", bouteille: "la bouteille de 75 cl", acheter: "Ajouter depuis la boutique", retour: "Tous les vins", autres: "Les autres cuvées" },
     note: "Vins de la vallée du Rhône. Prix et millésimes fictifs.",
   },
@@ -103,6 +101,7 @@ export const PAGES = {
     titre: ["La vue", "se mérite."],
     chapeau: "On monte à pied jusqu’aux dernières terrasses, puis on redescend à la cave goûter les quatre vins. Comptez de bonnes chaussures.",
     formulesTitre: "Trois façons de venir",
+    parPersonne: "par personne",
     formules: [
       { id: "degustation", nom: "La dégustation", duree: "45 minutes", prix: 12, texte: "Les quatre cuvées, commentées à la cave. Offerte dès six bouteilles achetées." },
       { id: "montee", nom: "La montée", duree: "2 heures", prix: 25, texte: "La marche dans les terrasses avec la vigneronne, puis la dégustation des quatre cuvées." },
@@ -124,7 +123,7 @@ export const PAGES = {
       message: "Un mot pour nous (facultatif)",
       envoyer: "Envoyer la demande",
       demo: "Démonstration : ce formulaire n’envoie rien et n’enregistre rien.",
-      erreurs: { resume: "Le formulaire contient des erreurs :", nom: "Indiquez votre nom.", courriel: "Indiquez une adresse électronique valide, par exemple nom@exemple.fr.", date: "Choisissez une date à venir.", personnes: "Indiquez un nombre de personnes entre 2 et 10." },
+      erreurs: { prefixe: "Erreur :", resume: "Le formulaire contient des erreurs :", nom: "Indiquez votre nom.", courriel: "Indiquez une adresse électronique valide, par exemple nom@exemple.fr.", date: "Choisissez une date à venir.", personnes: "Indiquez un nombre de personnes entre 2 et 10." },
       succesTitre: "Demande prête",
       succes: "Sur un vrai site, votre demande partirait maintenant vers le domaine, et vous recevriez une confirmation. Ici, rien n’a été envoyé ni conservé.",
       recommencer: "Faire une autre demande",
@@ -161,7 +160,7 @@ export const PAGES = {
     titre: ["Au bout", "du chemin."],
     chapeau: "La cave est au pied du coteau, à deux pas du fleuve. Le plus simple est encore de nous écrire avant de venir.",
     adresseTitre: "Adresse",
-    adresse: ["Domaine de Rochebise", "Chemin des Terrasses", "Ardèche"],
+    adresse: [SITE.nom, "Chemin des Terrasses", "Ardèche"],
     adresseNote: "Adresse fictive : ce domaine n’existe pas.",
     horairesTitre: "Horaires de la cave",
     horaires: [
@@ -184,7 +183,7 @@ export const PAGES = {
       message: "Votre message",
       envoyer: "Envoyer le message",
       demo: "Démonstration : ce formulaire n’envoie rien et n’enregistre rien.",
-      erreurs: { resume: "Le formulaire contient des erreurs :", nom: "Indiquez votre nom.", courriel: "Indiquez une adresse électronique valide, par exemple nom@exemple.fr.", message: "Écrivez votre message." },
+      erreurs: { prefixe: "Erreur :", resume: "Le formulaire contient des erreurs :", nom: "Indiquez votre nom.", courriel: "Indiquez une adresse électronique valide, par exemple nom@exemple.fr.", message: "Écrivez votre message." },
       succesTitre: "Message prêt",
       succes: "Sur un vrai site, votre message partirait maintenant vers le domaine. Ici, rien n’a été envoyé ni conservé.",
       recommencer: "Écrire un autre message",
@@ -204,4 +203,4 @@ export const PAGES = {
       { titre: "Accessibilité", textes: ["Ce site vise le niveau AA du référentiel général d’amélioration de l’accessibilité. Une version sans animation s’affiche d’office si votre appareil demande moins de mouvement, et un bouton en pied de page permet de couper les animations."] },
     ],
   },
-} as const;
+};

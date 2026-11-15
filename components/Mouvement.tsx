@@ -247,6 +247,16 @@ export function Mouvement() {
   useEffect(() => {
     const html = document.documentElement;
     const grand = window.matchMedia(GRAND_ECRAN);
+
+    // Transition entre deux pages : le contenu arrive en fondu. Le tout
+    // premier affichage n'est pas concerné (l'ouverture a sa propre entrée).
+    const contenu = document.getElementById("contenu");
+    if (contenu && html.dataset.visite === "oui") {
+      contenu.classList.remove("arrive");
+      void contenu.offsetWidth;
+      contenu.classList.add("arrive");
+    }
+    html.dataset.visite = "oui";
     let defaire: (() => void)[] = [];
     let jeton = 0;
 

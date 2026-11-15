@@ -8,8 +8,7 @@ import { SITE } from "@/content/site";
 import { SCRIPT_AMORCE } from "@/lib/animations";
 
 // ═══════════════════════════════════════════════════════════════════
-// Gabarit des pages françaises. La version anglaise aura le sien, sous
-// /en, avec lang="en".
+// Gabarit des pages françaises (lang="fr").
 //
 // `noindex` : le domaine est fictif, il ne doit pas apparaître dans les
 // moteurs de recherche. L'en-tête X-Robots-Tag de next.config.ts dit la
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#1a1016", colorScheme: "dark" };
 
-export default function GabaritFrancais({ children }: { children: ReactNode }) {
+export default function Gabarit({ children }: { children: ReactNode }) {
   return (
     // La classe `motion` est ajoutée par le script ci-dessous, avant le premier
     // affichage : d'où suppressHydrationWarning sur <html>.

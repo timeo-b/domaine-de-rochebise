@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Vins } from "@/components/pages/Vins";
-import { PAGES } from "@/content/pages-fr";
+import { pages } from "@/content/pages";
+import { meta } from "@/lib/meta";
 
-export const metadata: Metadata = { title: PAGES.vins.meta.titre, description: PAGES.vins.meta.description };
+export const metadata: Metadata = meta("fr", "vins", pages("fr").vins.meta);
 
 export default function Page() {
-  return <Vins />;
+  return <Vins langue="fr" />;
 }

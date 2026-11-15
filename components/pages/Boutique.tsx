@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Bouteille } from "@/components/Bouteille";
-import { CUVEES, PAGES, euros } from "@/content/pages-fr";
-import { SITE } from "@/content/site";
+import { cuvees, euros as enEuros, pages } from "@/content/pages";
+import { SITE, type Langue } from "@/content/site";
 
 // ═══════════════════════════════════════════════════════════════════
 // La boutique de démonstration.
@@ -15,9 +15,12 @@ import { SITE } from "@/content/site";
 const CLE = "panier";
 const PORT = 12;
 type Panier = Record<string, number>;
-const t = PAGES.boutique;
 
-export function Boutique() {
+export function Boutique({ langue }: { langue: Langue }) {
+  const t = pages(langue).boutique;
+  const CUVEES = cuvees(langue);
+  const euros = (n: number) => enEuros(n, langue);
+  const bouteilleAlt = pages(langue).vins.bouteilleAlt;
   const [panier, setPanier] = useState<Panier>({});
   const [annonce, setAnnonce] = useState("");
   const [commande, setCommande] = useState(false);
@@ -27,7 +30,7 @@ export function Boutique() {
     try {
       const garde = JSON.parse(window.localStorage.getItem(CLE) || "{}") as Panier;
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setPanier(Object.fromEntries(Object.entries(garde).filter(([slug, n]) => CUVEES.some((c) => c.slug === slug) && Number.isInteger(n) && n > 0 && n <= 60)));
+      setPanier(Object.fromEntries(Object.entries(garde).filter(([slug, n]) => cuvees("fr").some((c) => c.slug === slug) && Number.isInteger(n) && n > 0 && n <= 60)));
     } catch {
       // Stockage indisponible : le panier vaut pour la page en cours.
     }
@@ -74,7 +77,7 @@ export function Boutique() {
             return (
               <li key={c.slug} className="boutique__vin">
                 <div className="boutique__bouteille">
-                  <Bouteille etiquette={c.etiquette} cepage={c.cepage} domaine={SITE.court.toUpperCase()} capsule={c.capsule} titre={`Bouteille de la cuvée ${c.nom}`} />
+                  <Bouteille etiquette={c.etiquette} cepage={c.cepage} domaine={SITE.court.toUpperCase()} capsule={c.capsule} titre={`${bouteilleAlt} ${c.nom}`} />
                 </div>
                 <div>
                   <h2 className="gamme__nom">{c.nom}</h2>

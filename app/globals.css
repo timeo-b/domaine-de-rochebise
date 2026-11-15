@@ -219,6 +219,17 @@ main:focus {
   white-space: nowrap;
 }
 
+/* Écran très étroit ou texte très espacé : le nom passe sur deux lignes plutôt que de pousser le menu hors de l'écran. */
+@media (max-width: 420px) {
+  .entete {
+    gap: 1rem;
+  }
+
+  .entete__nom {
+    white-space: normal;
+  }
+}
+
 .entete__nav ul {
   display: flex;
   gap: clamp(1rem, 2.2vw, 2.25rem);
@@ -590,4 +601,66 @@ main:focus {
   font-weight: 300;
   font-size: var(--t-phrase);
   line-height: 1.02;
+}
+
+/* ── Langue, transition entre pages, curseur ─────────────────────── */
+
+.entete__langue {
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--laiton-clair);
+}
+
+.entete__nav .entete__langue {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--filet);
+}
+
+/* Le contenu d'une nouvelle page arrive en fondu, 300 ms : assez pour
+   lier deux pages, trop court pour faire attendre. */
+.motion main.arrive {
+  animation: arriver 300ms ease-out both;
+}
+
+@keyframes arriver {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.curseur {
+  position: fixed;
+  top: -1.125rem;
+  left: -1.125rem;
+  z-index: 60;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--laiton-clair);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 200ms ease,
+    scale 250ms var(--sortie),
+    background-color 250ms ease;
+}
+
+.curseur.est-visible {
+  opacity: 0.7;
+}
+
+.curseur.est-sur-lien {
+  scale: 1.7;
+  background-color: rgba(214, 187, 133, 0.12);
+}
+
+@media print {
+  .curseur,
+  .bandeau {
+    display: none;
+  }
 }

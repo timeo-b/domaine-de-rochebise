@@ -12,7 +12,7 @@
 // est fictif, et le site le dit sur chaque page.
 // ═══════════════════════════════════════════════════════════════════
 
-import { SITE } from "./site";
+import { SITE, type Langue } from "./site";
 import type { NomPhoto } from "@/lib/images.gen";
 
 export type Cuvee = {
@@ -37,7 +37,7 @@ export type Saison = {
 };
 
 export const FR = {
-  langue: "fr" as const,
+  langue: "fr" as Langue,
 
   commun: {
     evitement: "Aller au contenu",
@@ -50,7 +50,8 @@ export const FR = {
       { cle: "visites", libelle: "Visites" },
       { cle: "boutique", libelle: "Boutique" },
       { cle: "contact", libelle: "Contact" },
-    ] as const,
+    ] as { cle: "vins" | "domaine" | "visites" | "boutique" | "contact"; libelle: string }[],
+    autreLangue: { libelle: "English", description: "Read this site in English", lang: "en" },
     bandeau: {
       etiquette: "À propos de cette démonstration",
       texte: "Exemple de site réalisé par",
@@ -71,10 +72,6 @@ export const FR = {
         systeme: "Votre appareil demande moins de mouvement : les animations sont coupées.",
       },
       signature: { avant: "Exemple de site réalisé par", apres: ", 2026." },
-    },
-    enAttente: {
-      texte: "Cette page arrive à la prochaine étape. Pour l’instant, seul l’accueil est construit.",
-      retour: "Revenir à l’accueil",
     },
   },
 

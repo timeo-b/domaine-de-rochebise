@@ -1,9 +1,9 @@
-import { PAGES } from "@/content/pages-fr";
+import { pages } from "@/content/pages";
+import type { Langue } from "@/content/site";
 import { Tete } from "./Tete";
 
-const t = PAGES.mentions;
-
-export function Mentions() {
+export function Mentions({ langue }: { langue: Langue }) {
+  const t = pages(langue).mentions;
   return (
     <article className="page page--etroite" aria-labelledby="page-titre">
       <Tete id="page-titre" nom={t.nom} titre={t.titre} />
@@ -13,7 +13,7 @@ export function Mentions() {
           {s.textes.map((p) => (
             <p key={p}>{p}</p>
           ))}
-          {"lien" in s ? (
+          {"lien" in s && s.lien ? (
             <p>
               <a className="lien" href={s.lien.href}>
                 {s.lien.libelle}

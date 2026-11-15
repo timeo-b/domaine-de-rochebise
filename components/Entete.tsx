@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { equivalent, type Langue } from "@/content/site";
 
 // ═══════════════════════════════════════════════════════════════════
 // L'en-tête et le menu du téléphone.
@@ -18,9 +20,18 @@ type Props = {
   accueil: string;
   liens: Lien[];
   libelles: { navigation: string; menu: string; fermer: string };
+  /** Le lien vers la même page dans l'autre langue. */
+  autre: { libelle: string; description: string; lang: string };
 };
 
-export function Entete({ nom, accueil, liens, libelles }: Props) {
+export function Entete({ nom, accueil, liens, libelles, autre }: Props) {
+  const courant = usePathname();
+  // Un lien ordinaire, pas un lien interne : changer de langue recharge la page avec son propre gabarit.
+  const langue = (
+    <a className="entete__langue" href={equivalent(courant, autre.lang as Langue)} lang={autre.lang} hrefLang={autre.lang} aria-label={autre.description}>
+      {autre.libelle}
+    </a>
+  );
   const [ouvert, setOuvert] = useState(false);
   const bouton = useRef<HTMLButtonElement>(null);
   const panneau = useRef<HTMLDivElement>(null);
@@ -73,6 +84,7 @@ export function Entete({ nom, accueil, liens, libelles }: Props) {
               <Link href={l.href}>{l.libelle}</Link>
             </li>
           ))}
+          <li>{langue}</li>
         </ul>
       </nav>
 
@@ -97,6 +109,7 @@ export function Entete({ nom, accueil, liens, libelles }: Props) {
                 </Link>
               </li>
             ))}
+            <li>{langue}</li>
           </ul>
         </nav>
       </div>

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import type { Dictionnaire } from "@/content/fr";
 import { ROUTES, SITE, type Langue } from "@/content/site";
 import { BasculeAnimations } from "./BasculeAnimations";
+import { Curseur } from "./Curseur";
 import { Entete } from "./Entete";
 import { Mouvement } from "./Mouvement";
 
@@ -37,6 +38,7 @@ export function Coquille({ langue, t, children }: Props) {
         accueil={r.accueil}
         liens={liens}
         libelles={{ navigation: t.navigation, menu: t.menu, fermer: t.fermer }}
+        autre={t.autreLangue}
       />
 
       <main id="contenu" tabIndex={-1} data-hors-menu>
@@ -83,6 +85,7 @@ export function Coquille({ langue, t, children }: Props) {
       </footer>
 
       <Mouvement />
+      <Curseur />
     </>
   );
 }
